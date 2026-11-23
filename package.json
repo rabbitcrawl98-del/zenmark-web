@@ -1,0 +1,17 @@
+{
+  "name": "zenmark-web",
+  "version": "2.0.0",
+  "private": true,
+  "description": "ZENMARK® — 3D Full-Stack Growth & Custom Engineering Agency",
+  "scripts": {
+    "start": "serve .",
+    "test": "node -c api/leads.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

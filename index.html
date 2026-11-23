@@ -1,0 +1,2402 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZENMARK® — 3D Full-Stack Growth & Custom Engineering Agency</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Syne"', 'sans-serif'],
+            serif: ['"Instrument Serif"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            obsidian: '#070709',
+            alabaster: '#F4F1EA',
+            gold: '#D4AF37',
+            emerald: '#10B981',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg-primary: #070709;
+      --bg-elevated: rgba(16, 16, 20, 0.78);
+      --text-primary: #F4F1EA;
+      --text-muted: rgba(244, 241, 234, 0.62);
+      --border-hairline: rgba(244, 241, 234, 0.09);
+      --accent-gold: #D4AF37;
+      --accent-emerald: #10B981;
+      --cursor-hue: 45;
+    }
+
+    html.light {
+      --bg-primary: #F4F1EA;
+      --bg-elevated: rgba(255, 255, 255, 0.82);
+      --text-primary: #0D0D0F;
+      --text-muted: rgba(13, 13, 15, 0.64);
+      --border-hairline: rgba(13, 13, 15, 0.11);
+      --accent-gold: #B38728;
+      --accent-emerald: #059669;
+    }
+
+    /* Titan Fluid Responsive Typography & Perfect Device Zoom-Out Proportions */
+    html {
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+    @media (min-width: 640px) {
+      html { font-size: 16.5px; }
+    }
+    @media (min-width: 1024px) {
+      html { font-size: 17.5px; }
+    }
+    @media (min-width: 1440px) {
+      html { font-size: 19px; }
+    }
+    @media (min-width: 1920px) {
+      html { font-size: 21px; }
+    }
+    @media (min-width: 2560px) {
+      html { font-size: 23.5px; }
+    }
+    @media (min-width: 3840px) {
+      html { font-size: 27px; }
+    }
+
+    /* Elevate microscopic hardcoded text sizes into balanced, readable REMs */
+    .text-\[9px\] {
+      font-size: 0.75rem !important;
+      line-height: 1.45 !important;
+      letter-spacing: 0.12em !important;
+    }
+    .text-\[10px\] {
+      font-size: 0.8125rem !important;
+      line-height: 1.5 !important;
+      letter-spacing: 0.1em !important;
+    }
+    .text-\[11px\] {
+      font-size: 0.875rem !important;
+      line-height: 1.5 !important;
+    }
+    .text-xs {
+      font-size: 0.875rem !important;
+      line-height: 1.55 !important;
+    }
+    .text-sm {
+      font-size: 1rem !important;
+      line-height: 1.62 !important;
+    }
+    .text-base {
+      font-size: 1.125rem !important;
+      line-height: 1.68 !important;
+    }
+    .text-lg {
+      font-size: 1.25rem !important;
+      line-height: 1.65 !important;
+    }
+
+    /* Un-squeeze letter spacing and line heights */
+    h1, h2, h3 {
+      letter-spacing: -0.012em !important;
+    }
+    .leading-\[1\.02\] {
+      line-height: 1.14 !important;
+    }
+    .tracking-tight {
+      letter-spacing: -0.012em !important;
+    }
+    .font-mono {
+      letter-spacing: 0.05em !important;
+    }
+
+    /* Large display hero scaling */
+    @media (min-width: 1440px) {
+      .lg\:text-\[68px\] {
+        font-size: 4.5rem !important;
+        line-height: 1.12 !important;
+      }
+    }
+    @media (min-width: 1920px) {
+      .lg\:text-\[68px\] {
+        font-size: 5rem !important;
+        line-height: 1.1 !important;
+      }
+    }
+    @media (min-width: 2560px) {
+      .lg\:text-\[68px\] {
+        font-size: 5.6rem !important;
+        line-height: 1.08 !important;
+      }
+    }
+
+    /* Expand button touch/click target and typography */
+    .liquid-btn {
+      min-height: 2.75rem;
+    }
+    .liquid-btn .liquid-label {
+      font-size: 0.875rem !important;
+      letter-spacing: 0.08em !important;
+    }
+    /* Responsive High-Resolution Container Un-Squeeze */
+    @media (min-width: 1440px) {
+      .max-w-7xl {
+        max-width: 86rem !important;
+      }
+    }
+    @media (min-width: 1920px) {
+      .max-w-7xl {
+        max-width: 96rem !important;
+      }
+    }
+    @media (min-width: 2560px) {
+      .max-w-7xl {
+        max-width: 106rem !important;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Architectural Hairline Grid */
+    .arch-grid {
+      background-size: 64px 64px;
+      background-image:
+        linear-gradient(to right, var(--border-hairline) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--border-hairline) 1px, transparent 1px);
+    }
+
+    .hairline-border {
+      border-color: var(--border-hairline);
+    }
+
+    .glass-surface {
+      background: var(--bg-elevated);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-hairline);
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* Fluid-Filling Button (from animation 4.md upgraded with magnetic + dual Gold/Emerald wave) */
+    .liquid-btn {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .liquid-btn .liquid-fill {
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, #D4AF37 0%, #10B981 100%);
+      transform: translateY(104%);
+      border-radius: inherit;
+      transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+      z-index: 0;
+    }
+    .liquid-btn:hover .liquid-fill,
+    .liquid-btn:focus-visible .liquid-fill {
+      transform: translateY(0%);
+    }
+    .liquid-btn .liquid-label {
+      position: relative;
+      z-index: 1;
+      transition: color 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .liquid-btn:hover .liquid-label {
+      color: #070709 !important;
+      font-weight: 700;
+    }
+
+    /* 3D Isometric Exploded Service Card */
+    .iso-card {
+      transform-style: preserve-3d;
+      perspective: 1100px;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .iso-layer-1 {
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .iso-layer-2 {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .iso-layer-3 {
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .iso-card:hover .iso-layer-1 {
+      transform: translate3d(0, -4px, 18px);
+    }
+    .iso-card:hover .iso-layer-2 {
+      transform: translate3d(0, -10px, 34px);
+    }
+    .iso-card:hover .iso-layer-3 {
+      transform: translate3d(0, -16px, 52px);
+    }
+
+    /* Text Roll Navigation Effect (Clean, Unclipped & Elevated) */
+    .nav-roll {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      height: 1.85em;
+      line-height: 1.85em;
+      align-items: center;
+    }
+    .nav-roll span {
+      display: inline-block;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-roll::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      color: #D4AF37;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-roll:hover span,
+    .nav-roll:hover::after {
+      transform: translateY(-100%);
+    }
+
+    /* Specular Tracing Border on Recommended Growth Tier */
+    @keyframes borderSpin {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .gold-emerald-trace {
+      background: linear-gradient(120deg, #D4AF37, #10B981, #F4F1EA, #D4AF37);
+      background-size: 260% 260%;
+      animation: borderSpin 6s ease infinite;
+    }
+
+    /* Hide OS Cursor on Fine Pointer Devices & Use Inbuilt Yellow/Gold Cursor, but retain text caret for inputs */
+    @media (pointer: fine) {
+      html, body, *, *::before, *::after, a, button, label, [role="button"] {
+        cursor: none !important;
+      }
+      input, select, textarea, [contenteditable] {
+        cursor: text !important;
+      }
+    }
+
+    /* Protective Hero Readability Scrim so 3D Fluid & Sand Never Wash Out Text */
+    .hero-text-scrim {
+      background: radial-gradient(ellipse 78% 72% at 28% 68%, rgba(7, 7, 9, 0.88) 0%, rgba(7, 7, 9, 0.52) 55%, rgba(7, 7, 9, 0.12) 100%);
+    }
+    html.light .hero-text-scrim {
+      background: radial-gradient(ellipse 78% 72% at 28% 68%, rgba(244, 241, 234, 0.92) 0%, rgba(244, 241, 234, 0.62) 55%, rgba(244, 241, 234, 0.15) 100%);
+    }
+
+    /* Custom Trailing Magnetic Cursor & Click Shockwave (Zero Jitter GPU Transform) */
+    #custom-cursor-dot,
+    #custom-cursor-ring {
+      pointer-events: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+      will-change: transform;
+      transition: width 0.18s ease, height 0.18s ease, border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    @media (pointer: coarse) {
+      #custom-cursor-dot,
+      #custom-cursor-ring {
+        display: none !important;
+      }
+    }
+
+    @keyframes clickRipple {
+      0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(2.6);
+        opacity: 0;
+      }
+    }
+    .click-burst {
+      position: fixed;
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      border: 1.5px solid #D4AF37;
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.55);
+      pointer-events: none;
+      z-index: 9998;
+      animation: clickRipple 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Corner Crosshair Marks */
+    .crosshair {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+    .crosshair::before,
+    .crosshair::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+    }
+    .crosshair::before {
+      top: 4px;
+      left: 0;
+      width: 9px;
+      height: 1px;
+    }
+    .crosshair::after {
+      top: 0;
+      left: 4px;
+      width: 1px;
+      height: 9px;
+    }
+  </style>
+</head>
+<body class="selection:bg-gold selection:text-obsidian">
+
+  <!-- Custom Magnetic Fluid Cursor (Inbuilt Yellow/Gold Dot replaces OS Cursor) -->
+  <div id="custom-cursor-dot" class="h-3.5 w-3.5 rounded-full bg-[#FFD166] shadow-[0_0_16px_#FFD166,0_0_6px_#FFFFFF]"></div>
+  <div id="custom-cursor-ring" class="h-10 w-10 rounded-full border border-[#FFD166]/65 bg-emerald/5 backdrop-blur-[1px]"></div>
+
+  <!-- Top Sticky Command Bar (Comfortable, Un-Squeezed & Proportionate) -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-surface border-b hairline-border">
+    <div class="mx-auto flex h-[76px] lg:h-[84px] max-w-7xl 2xl:max-w-[1720px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <!-- Brand Identity + Udyam Badge -->
+      <div class="flex items-center gap-3">
+        <a href="#hero" class="group flex items-center gap-3 focus:outline-none">
+          <span class="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/40 bg-gradient-to-br from-gold/25 to-emerald/20 font-display text-base font-bold tracking-tight text-gold transition-transform duration-300 group-hover:scale-105">
+            Z
+          </span>
+          <div class="flex flex-col">
+            <span class="font-display text-lg font-bold tracking-tight sm:text-xl">
+              ZENMARK<span class="text-gold">®</span>
+            </span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald font-semibold">
+              Udyam Registered
+            </span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
+        <a href="#proof" class="nav-roll" data-text="4.4x Proof"><span>4.4x Proof</span></a>
+        <a href="#services" class="nav-roll" data-text="4 Core Engines"><span>4 Core Engines</span></a>
+        <a href="#simulator" class="nav-roll" data-text="ROAS Lab"><span>ROAS Lab</span></a>
+        <a href="#pricing" class="nav-roll" data-text="Retainers"><span>Retainers</span></a>
+        <a href="#architects" class="nav-roll" data-text="Leadership"><span>Leadership</span></a>
+      </nav>
+
+      <!-- Hardware Tier Switcher + Sound + Theme + Primary CTA -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- 3-Tier Device Adaptive Pill -->
+        <div class="hidden sm:flex items-center rounded-full border hairline-border bg-black/25 p-1 font-mono text-xs" role="group" aria-label="Device performance tier">
+          <button type="button" data-tier-btn="1" class="tier-btn rounded-full px-2.5 py-1 opacity-60 transition-all hover:opacity-100" title="Tier 1: Basic Phone (Low GPU)">
+            T1·Low
+          </button>
+          <button type="button" data-tier-btn="2" class="tier-btn rounded-full px-2.5 py-1 opacity-60 transition-all hover:opacity-100" title="Tier 2: Average Device (Balanced)">
+            T2·Mid
+          </button>
+          <button type="button" data-tier-btn="3" class="tier-btn rounded-full bg-gold text-obsidian font-semibold px-2.5 py-1 transition-all" title="Tier 3: High-End Device (Full 3D + Fluid)">
+            T3·Max
+          </button>
+        </div>
+
+        <!-- Web Audio Click Sound Toggle -->
+        <button
+          id="sound-toggle-btn"
+          type="button"
+          aria-label="Toggle interactive click and hover sounds"
+          class="magnetic-el flex h-9 items-center gap-2 rounded-full border hairline-border px-3 font-mono text-xs uppercase tracking-wider transition-colors hover:border-gold/50"
+        >
+          <span id="sound-dot" class="h-2 w-2 rounded-full bg-emerald animate-pulse"></span>
+          <span id="sound-label">SFX ON</span>
+        </button>
+
+        <!-- Light / Dark Theme Toggle (from animation 1.md) -->
+        <button
+          id="theme-toggle-btn"
+          type="button"
+          aria-label="Toggle Light and Dark color theme"
+          class="magnetic-el flex h-9 w-9 items-center justify-center rounded-full border hairline-border text-sm transition-transform active:scale-95 hover:border-gold/50"
+          title="Switch Obsidian Dark / Alabaster Light Theme"
+        >
+          <span id="theme-icon">◐</span>
+        </button>
+
+        <!-- Instant WhatsApp CTA -->
+        <a
+          href="https://wa.me/917678439995?text=Hi%20Zenmark%20Team%2C%20I%20explored%20your%203D%20web%20app%20and%20want%20to%20discuss%20scaling%20our%20growth."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="liquid-btn magnetic-el rounded-full border border-gold/40 bg-gold/15 px-4.5 py-2 text-sm font-bold tracking-wide"
+        >
+          <span class="liquid-fill"></span>
+          <span class="liquid-label flex items-center gap-2">
+            <span>WhatsApp</span>
+            <span class="hidden sm:inline font-mono text-xs opacity-80">+91 7678439995</span>
+            <span aria-hidden="true">↗</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       PAGE 1: CURSOR-REACTIVE COLOR-SHIFTING FLUID + 3D SAND SCULPTURE HERO
+       (Fuses animation 3.md WebGL Fluid + animation 1.md 3D Sand Filaments)
+       ========================================================================= -->
+  <section id="hero" class="relative min-h-screen w-full overflow-hidden pt-[72px] flex flex-col justify-between select-none">
+    <!-- Layer 1: Raw WebGL GLSL Cursor-Reactive Color-Shifting Fluid Canvas -->
+    <canvas id="fluid-webgl-canvas" aria-hidden="true" class="pointer-events-none absolute inset-0 h-full w-full opacity-85"></canvas>
+
+    <!-- Layer 2: Interactive 3D Twisted Sand Particles & Filaments Canvas -->
+    <canvas id="sand-sculpture-canvas" aria-hidden="true" class="pointer-events-none absolute inset-0 h-full w-full"></canvas>
+
+    <!-- Protective Readability Scrim + Subtle Architectural Grid Overlay -->
+    <div class="hero-text-scrim pointer-events-none absolute inset-0"></div>
+    <div class="arch-grid pointer-events-none absolute inset-0 opacity-25"></div>
+
+    <!-- Top Status Telemetry Bar inside Hero -->
+    <div class="relative z-10 mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-3 px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="inline-flex items-center gap-2 rounded-full border border-emerald/35 bg-emerald/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-emerald">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald animate-ping"></span>
+          GOVT. OF INDIA UDYAM REGISTERED COMPANY
+        </span>
+        <span class="hidden sm:inline-flex items-center gap-1.5 rounded-full border hairline-border glass-surface px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] opacity-80">
+          NEW DELHI HQ · INDIA · EUROPE · GULF · US
+        </span>
+      </div>
+
+      <!-- Live Shader Mode Switcher + Cursor Color Telemetry -->
+      <div class="flex items-center gap-2">
+        <span id="cursor-color-readout" class="hidden lg:inline-flex items-center gap-1.5 rounded-full border hairline-border glass-surface px-2.5 py-1 font-mono text-[10px]">
+          <span id="cursor-swatch" class="h-2 w-2 rounded-full bg-gold transition-colors"></span>
+          <span id="cursor-hue-text">MOVE CURSOR TO SHIFT FLUID COLOR</span>
+        </span>
+        <div class="inline-flex rounded-full border hairline-border glass-surface p-0.5 font-mono text-[10px]">
+          <button type="button" data-hero-mode="hybrid" class="hero-mode-btn rounded-full bg-gold text-obsidian font-semibold px-2.5 py-0.5 transition-all">
+            Fluid + Sand
+          </button>
+          <button type="button" data-hero-mode="fluid" class="hero-mode-btn rounded-full px-2.5 py-0.5 opacity-70 hover:opacity-100 transition-all">
+            Fluid Only
+          </button>
+          <button type="button" data-hero-mode="sand" class="hero-mode-btn rounded-full px-2.5 py-0.5 opacity-70 hover:opacity-100 transition-all">
+            Sand Only
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center-Bottom Editorial Conversion Hero (Taste Skill 2-Line Headline Lock) -->
+    <div class="relative z-10 mx-auto my-auto flex w-full max-w-7xl flex-col justify-end px-4 py-10 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+        <!-- Left 8 Columns: Core Hook & Fluid Buttons -->
+        <div class="lg:col-span-8">
+          <div class="mb-5 inline-flex items-center gap-3 rounded-full border border-[#FFD166]/65 bg-[#070709]/90 px-4 py-2 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FFF6D6] shadow-[0_8px_30px_rgba(0,0,0,0.75)] backdrop-blur-md">
+            <span class="inline-block h-2 w-2 rounded-full bg-[#FFD166] shadow-[0_0_10px_#FFD166]"></span>
+            <span>FULL-STACK ACQUISITION &amp; CUSTOM ENGINEERING</span>
+          </div>
+
+          <h1 class="font-display text-4xl font-bold leading-[1.14] tracking-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.65)] sm:text-6xl lg:text-[68px]">
+            <span class="block">Revenue engineered.</span>
+            <span class="font-serif italic font-normal text-[#FFD166]">Systems that scale at <span class="text-emerald not-italic font-display">4.4x</span> ROAS.</span>
+          </h1>
+
+          <p class="mt-6 max-w-2xl text-base leading-relaxed opacity-95 drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)] sm:text-lg">
+            We combine high-converting Meta, Google &amp; LinkedIn ad systems with self-sufficient WhatsApp CRM automations and bespoke 3D web applications—backed by tailored &amp; customized ad spend gatekeeping starting at ₹999/day (India) or $25/day (Global).
+          </p>
+
+          <!-- Primary & Secondary Fluid-Filling Magnetic Buttons -->
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a
+              href="#configurator"
+              class="liquid-btn magnetic-el inline-flex items-center gap-3 rounded-full border border-gold bg-gold px-8 py-4 text-sm font-bold uppercase tracking-wider text-obsidian shadow-[0_0_30px_rgba(212,175,55,0.3)]"
+            >
+              <span class="liquid-fill"></span>
+              <span class="liquid-label flex items-center gap-2.5">
+                <span>Launch Your Growth Engine</span>
+                <span aria-hidden="true">→</span>
+              </span>
+            </a>
+
+            <a
+              href="#services"
+              class="liquid-btn magnetic-el inline-flex items-center gap-2.5 rounded-full border hairline-border glass-surface px-7 py-4 text-sm font-semibold uppercase tracking-wider"
+            >
+              <span class="liquid-fill"></span>
+              <span class="liquid-label flex items-center gap-2">
+                <span>Explore 4 Core Systems</span>
+                <span aria-hidden="true">↓</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right 4 Columns: Live Interactive Telemetry HUD Card -->
+        <div class="lg:col-span-4">
+          <div class="magnetic-card glass-surface relative rounded-2xl p-5 sm:p-6">
+            <span class="crosshair top-2 left-2"></span>
+            <span class="crosshair top-2 right-2"></span>
+            <div class="flex items-center justify-between border-b hairline-border pb-3">
+              <span class="font-mono text-[10px] uppercase tracking-[0.2em] opacity-70">VERIFIED AGENCY BENCHMARK</span>
+              <span class="inline-flex items-center gap-1.5 font-mono text-[10px] text-emerald">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald"></span>
+                LIVE METRICS
+              </span>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-3 sm:gap-4">
+              <div class="min-w-0">
+                <div class="font-mono text-[10px] uppercase tracking-wider opacity-60">AVG ROAS DELIVERED</div>
+                <div class="mt-1 font-sans text-2xl font-extrabold tracking-tight text-[#FFD166] sm:text-3xl whitespace-nowrap tabular-nums">4.4x</div>
+                <div class="mt-0.5 text-[11px] text-emerald">Across Meta · Google · LI</div>
+              </div>
+              <div class="min-w-0">
+                <div class="font-mono text-[10px] uppercase tracking-wider opacity-60">MIN. DAILY AD SPEND</div>
+                <div class="mt-1 flex items-baseline gap-1 whitespace-nowrap tabular-nums">
+                  <span class="price-val font-sans text-2xl font-extrabold tracking-tight sm:text-3xl" data-inr="₹999" data-usd="$25" data-eur="€25" data-aed="90 AED" data-unit="/day">₹999</span>
+                  <span class="price-unit font-mono text-xs font-medium opacity-70">/day</span>
+                </div>
+                <div class="mt-0.5 text-[11px] opacity-75">India · $25/day Global Floor</div>
+              </div>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between rounded-xl border hairline-border bg-black/20 px-3.5 py-2.5 text-xs">
+              <span class="font-mono text-[11px] opacity-75">Direct WhatsApp Desk:</span>
+              <a href="https://wa.me/917678439995" target="_blank" rel="noopener noreferrer" class="font-mono font-semibold text-gold hover:underline">
+                +91 7678439995 ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PAGE 2: STATIC ARCHITECTURAL PROOF LEDGER & GLOBAL DELIVERY HUB
+       (80% Calm Static Precision + 20% Magnetic Telemetry & Global Arcs)
+       ========================================================================= -->
+  <section id="proof" class="relative border-t hairline-border py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Section Eyebrow & Restrained Blur-to-Crisp Header -->
+      <div class="flex flex-col justify-between gap-6 border-b hairline-border pb-10 md:flex-row md:items-end">
+        <div>
+          <div class="mb-3 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span>
+            <span>INSTITUTIONAL CREDIBILITY &amp; GLOBAL DELIVERY</span>
+          </div>
+          <h2 class="font-display text-3xl font-bold tracking-tight sm:text-5xl">
+            Engineered in New Delhi.<br />
+            <span class="font-serif italic font-normal text-gold">Scaling brands across 4 global regions.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-xs leading-relaxed opacity-75 sm:text-sm">
+          As a Government of India <strong class="text-gold font-semibold">Udyam Registered Company</strong>, Zenmark pairs direct-to-founder speed with enterprise accountability—delivering measurable return on ad spend and full-stack software ownership.
+        </p>
+      </div>
+
+      <!-- 4-Column Architectural Proof Matrix (Zero Layout Shift / Locked Tabular Numbers) -->
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="magnetic-card glass-surface relative overflow-hidden rounded-2xl p-6 transition-colors hover:border-gold/50">
+          <span class="crosshair top-3 right-3"></span>
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">01 / PAID MEDIA EFFICIENCY</div>
+          <div class="mt-4 font-sans text-3xl font-extrabold tracking-tight sm:text-4xl whitespace-nowrap tabular-nums">4.4x</div>
+          <div class="mt-2 text-sm font-semibold">Average ROAS Delivered</div>
+          <p class="mt-1.5 text-xs leading-relaxed opacity-70">
+            Verified multi-channel return across Meta Ads, Google High-Intent Search, and LinkedIn B2B funnels.
+          </p>
+        </div>
+
+        <div class="magnetic-card glass-surface relative overflow-hidden rounded-2xl p-6 transition-colors hover:border-emerald/50">
+          <span class="crosshair top-3 right-3"></span>
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald">02 / LEGAL &amp; COMPLIANCE</div>
+          <div class="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl whitespace-nowrap">UDYAM</div>
+          <div class="mt-2 text-sm font-semibold">Registered Enterprise</div>
+          <p class="mt-1.5 text-xs leading-relaxed opacity-70">
+            Official Government of India MSME registered company operating with transparent contracts &amp; zero hidden markups.
+          </p>
+        </div>
+
+        <div class="magnetic-card glass-surface relative overflow-hidden rounded-2xl p-6 transition-colors hover:border-gold/50">
+          <span class="crosshair top-3 right-3"></span>
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">03 / INTERNATIONAL FOOTPRINT</div>
+          <div class="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl whitespace-nowrap tabular-nums">4 Hubs</div>
+          <div class="mt-2 text-sm font-semibold">India · Europe · Gulf · US</div>
+          <p class="mt-1.5 text-xs leading-relaxed opacity-70">
+            Timezone-synced campaign management, multi-currency checkout funnels, and sub-second edge web apps.
+          </p>
+        </div>
+
+        <div class="magnetic-card glass-surface relative overflow-hidden rounded-2xl p-6 transition-colors hover:border-emerald/50">
+          <span class="crosshair top-3 right-3"></span>
+          <div class="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald">04 / AUTOMATION LATENCY</div>
+          <div class="mt-4 font-sans text-3xl font-extrabold tracking-tight sm:text-4xl whitespace-nowrap tabular-nums">&lt; 60s</div>
+          <div class="mt-2 text-sm font-semibold">Lead-to-WhatsApp Speed</div>
+          <p class="mt-1.5 text-xs leading-relaxed opacity-70">
+            Self-sufficient CRM &amp; WhatsApp workflows that capture, qualify, and follow up with every lead automatically.
+          </p>
+        </div>
+      </div>
+
+      <!-- Interactive Global Corridor Map Bar (Delhi -> India, Europe, Gulf, US) -->
+      <div class="mt-6 glass-surface rounded-2xl p-6 sm:p-8">
+        <div class="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
+          <div class="lg:col-span-5">
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald">ACTIVE CLIENT CORRIDORS</span>
+            <h3 class="mt-2 font-display text-xl font-bold sm:text-2xl">
+              Click any region to inspect our deployment architecture
+            </h3>
+            <div class="mt-4 flex flex-wrap gap-2" role="tablist" aria-label="Global client regions">
+              <button type="button" data-region="india" class="region-tab rounded-full bg-gold px-3.5 py-1.5 font-mono text-xs font-semibold text-obsidian transition-all">
+                🇮🇳 India (HQ)
+              </button>
+              <button type="button" data-region="gulf" class="region-tab rounded-full border hairline-border px-3.5 py-1.5 font-mono text-xs opacity-75 hover:opacity-100 transition-all">
+                🇦🇪 Gulf (UAE / KSA)
+              </button>
+              <button type="button" data-region="europe" class="region-tab rounded-full border hairline-border px-3.5 py-1.5 font-mono text-xs opacity-75 hover:opacity-100 transition-all">
+                🇪🇺 Europe (UK / EU)
+              </button>
+              <button type="button" data-region="us" class="region-tab rounded-full border hairline-border px-3.5 py-1.5 font-mono text-xs opacity-75 hover:opacity-100 transition-all">
+                🇺🇸 United States
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <div id="region-detail-card" class="rounded-xl border hairline-border bg-black/25 p-5 transition-all">
+              <div class="flex flex-wrap items-center justify-between gap-2 border-b hairline-border pb-3">
+                <span id="region-title" class="font-display text-base font-bold text-gold">🇮🇳 India Corridor — New Delhi Command Center</span>
+                <span id="region-tag" class="rounded-full bg-emerald/15 px-2.5 py-0.5 font-mono text-[10px] text-emerald">CTWA + UPI + Full-Stack</span>
+              </div>
+              <p id="region-desc" class="mt-3 text-xs leading-relaxed opacity-80 sm:text-sm">
+                Direct Click-to-WhatsApp (CTWA) Meta &amp; Google ad funnels paired with automated WhatsApp lead qualification and razor-sharp custom web platforms starting at ₹15,000/month.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PAGE 3: THE 4 CORE SERVICES (STATIC ARCHITECTURAL BENTO + 3D LAYER BURST)
+       ========================================================================= -->
+  <section id="services" class="relative border-t hairline-border py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col justify-between gap-6 border-b hairline-border pb-10 md:flex-row md:items-end">
+        <div>
+          <div class="mb-3 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-emerald">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald"></span>
+            <span>4 CORE REVENUE SYSTEMS · HOVER TO EXPLODE 3D LAYERS</span>
+          </div>
+          <h2 class="font-display text-3xl font-bold tracking-tight sm:text-5xl">
+            Four engines. One self-sufficient<br />
+            <span class="font-serif italic font-normal text-gold">acquisition &amp; software machine.</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-xs leading-relaxed opacity-75 sm:text-sm">
+          Hover or tap any card below to burst its 3D architectural layers and inspect how our ad campaigns, organic engines, WhatsApp workflows, and custom code connect.
+        </p>
+      </div>
+
+      <!-- 2x2 Asymmetric Architectural Bento Grid -->
+      <div class="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-12">
+        <!-- Service 1: Paid Advertising (7 cols) -->
+        <article class="iso-card magnetic-card glass-surface group relative flex flex-col justify-between overflow-hidden rounded-2xl p-6 sm:p-8 lg:col-span-7 hover:border-gold/60">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-gold">
+                ENGINE 01 · PAID ADVERTISING
+              </span>
+              <span class="font-mono text-xs text-emerald">4.4x Avg. ROAS</span>
+            </div>
+            <h3 class="mt-5 font-display text-2xl font-bold sm:text-3xl">
+              Meta Ads, Google Ads &amp; LinkedIn B2B Acquisition
+            </h3>
+            <p class="mt-2.5 max-w-xl text-xs leading-relaxed opacity-75 sm:text-sm">
+              We engineer high-intent search capture, visual pattern-interrupt Meta creatives, and decision-maker LinkedIn funnels backed by server-side conversion tracking.
+            </p>
+          </div>
+
+          <!-- 3D Exploding Isometric Stack Preview -->
+          <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div class="iso-layer-1 rounded-xl border hairline-border bg-black/30 p-3.5">
+              <div class="font-mono text-[10px] text-gold">META ADS (IG/FB)</div>
+              <div class="mt-1 text-xs font-semibold">3-Angle Creative Testing</div>
+              <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-[88%] bg-gold"></div>
+              </div>
+            </div>
+            <div class="iso-layer-2 rounded-xl border hairline-border bg-black/30 p-3.5">
+              <div class="font-mono text-[10px] text-emerald">GOOGLE SEARCH</div>
+              <div class="mt-1 text-xs font-semibold">High-Intent Exact Match</div>
+              <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-[92%] bg-emerald"></div>
+              </div>
+            </div>
+            <div class="iso-layer-3 rounded-xl border hairline-border bg-black/30 p-3.5">
+              <div class="font-mono text-[10px] text-gold">LINKEDIN B2B</div>
+              <div class="mt-1 text-xs font-semibold">Founder &amp; CXO Targeting</div>
+              <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-[84%] bg-gradient-to-r from-gold to-emerald"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 2: Organic Marketing (5 cols) -->
+        <article class="iso-card magnetic-card glass-surface group relative flex flex-col justify-between overflow-hidden rounded-2xl p-6 sm:p-8 lg:col-span-5 hover:border-emerald/60">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="rounded-full border border-emerald/40 bg-emerald/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-emerald">
+                ENGINE 02 · ORGANIC MARKETING
+              </span>
+              <span class="font-mono text-xs opacity-70">Omnichannel Authority</span>
+            </div>
+            <h3 class="mt-5 font-display text-2xl font-bold sm:text-3xl">
+              Social Media Management &amp; Brand Distribution
+            </h3>
+            <p class="mt-2.5 text-xs leading-relaxed opacity-75 sm:text-sm">
+              Turn your brand into a category magnet through short-form vertical reels, authority carousels, and organic distribution systems that lower blended acquisition costs.
+            </p>
+          </div>
+
+          <div class="mt-8 space-y-2.5">
+            <div class="iso-layer-1 flex items-center justify-between rounded-xl border hairline-border bg-black/30 px-4 py-2.5 text-xs">
+              <span class="font-medium">Short-Form Reels &amp; Retention Scripts</span>
+              <span class="font-mono text-[10px] text-gold">HIGH REACH</span>
+            </div>
+            <div class="iso-layer-2 flex items-center justify-between rounded-xl border hairline-border bg-black/30 px-4 py-2.5 text-xs">
+              <span class="font-medium">LinkedIn &amp; Instagram Authority Architecture</span>
+              <span class="font-mono text-[10px] text-emerald">TRUST ENGINE</span>
+            </div>
+            <div class="iso-layer-3 flex items-center justify-between rounded-xl border hairline-border bg-black/30 px-4 py-2.5 text-xs">
+              <span class="font-medium">Comment-to-DM Lead Capture Loops</span>
+              <span class="font-mono text-[10px] text-gold">AUTO INBOUND</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 3: Funnels, Workflows & Automations (5 cols) -->
+        <article class="iso-card magnetic-card glass-surface group relative flex flex-col justify-between overflow-hidden rounded-2xl p-6 sm:p-8 lg:col-span-5 hover:border-gold/60">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-gold">
+                ENGINE 03 · FUNNELS &amp; AUTOMATIONS
+              </span>
+              <span class="font-mono text-xs text-emerald">24/7 Self-Sufficient</span>
+            </div>
+            <h3 class="mt-5 font-display text-2xl font-bold sm:text-3xl">
+              End-to-End Sales Funnels &amp; WhatsApp CRM Workflows
+            </h3>
+            <p class="mt-2.5 text-xs leading-relaxed opacity-75 sm:text-sm">
+              Eliminate manual lead chasing. We build frictionless sales pipelines, automated WhatsApp qualification flows, and instant CRM syncs that close buyers while you sleep.
+            </p>
+          </div>
+
+          <div class="mt-8 flex flex-col gap-2.5 font-mono text-[11px]">
+            <div class="iso-layer-1 flex items-center gap-3 rounded-xl border hairline-border bg-black/30 px-4 py-2.5">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">1</span>
+              <span>Ad Click ➔ Sub-Second Landing Page Capture</span>
+            </div>
+            <div class="iso-layer-2 flex items-center gap-3 rounded-xl border hairline-border bg-black/30 px-4 py-2.5">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald/20 text-emerald">2</span>
+              <span>Instant Automated WhatsApp Follow-Up (&lt; 60s)</span>
+            </div>
+            <div class="iso-layer-3 flex items-center gap-3 rounded-xl border hairline-border bg-black/30 px-4 py-2.5">
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-gold">3</span>
+              <span>CRM Pipeline Tagging + Calendar / Checkout Close</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 4: Custom Development (7 cols) -->
+        <article class="iso-card magnetic-card glass-surface group relative flex flex-col justify-between overflow-hidden rounded-2xl p-6 sm:p-8 lg:col-span-7 hover:border-emerald/60">
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="rounded-full border border-emerald/40 bg-emerald/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-emerald">
+                ENGINE 04 · CUSTOM DEVELOPMENT
+              </span>
+              <span class="font-mono text-xs text-gold">Full Code Ownership</span>
+            </div>
+            <h3 class="mt-5 font-display text-2xl font-bold sm:text-3xl">
+              High-Converting 3D Websites &amp; Full-Stack Web Applications
+            </h3>
+            <p class="mt-2.5 max-w-xl text-xs leading-relaxed opacity-75 sm:text-sm">
+              Engineered from scratch for your exact business logic—combining 60fps WebGL/3D visual craft with production-hardened backends, databases, and payment gateways.
+            </p>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div class="iso-layer-1 rounded-xl border hairline-border bg-black/30 p-3.5">
+              <div class="font-mono text-[10px] text-emerald">FRONTEND CRAFT</div>
+              <div class="mt-1 text-xs font-semibold">Next.js · Three.js · GSAP</div>
+              <div class="mt-1 text-[11px] opacity-65">3-Tier Adaptive 60fps UI</div>
+            </div>
+            <div class="iso-layer-2 rounded-xl border hairline-border bg-black/30 p-3.5">
+              <div class="font-mono text-[10px] text-gold">BACKEND &amp; DB</div>
+              <div class="mt-1 text-xs font-semibold">Postgres · APIs · Auth</div>
+              <div class="mt-1 text-[11px] opacity-65">Production-Ready Schemas</div>
+            </div>
+            <div class="iso-layer-3 rounded-xl border hairline-border bg-black/30 p-3.5">
+              <div class="font-mono text-[10px] text-emerald">CONVERSION CRO</div>
+              <div class="mt-1 text-xs font-semibold">Sub-Second Load Speed</div>
+              <div class="mt-1 text-[11px] opacity-65">Built to Convert Cold Traffic</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PAGE 3.5: INTERACTIVE 4.4x ROAS & GROWTH SIMULATOR (HORMOZI VALUE ENGINE)
+       ========================================================================= -->
+  <section id="simulator" class="relative border-t hairline-border py-20 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="glass-surface relative overflow-hidden rounded-3xl p-6 sm:p-10 lg:p-12">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
+          <div class="lg:col-span-6">
+            <span class="rounded-full border border-gold/40 bg-gold/10 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-gold">
+              INTERACTIVE VALUE SIMULATOR · 4.4x BENCHMARK
+            </span>
+            <h2 class="mt-4 font-display text-2xl font-bold sm:text-4xl">
+              Calculate your projected return with Zenmark's <span class="text-emerald">4.4x</span> average ROAS
+            </h2>
+            <p class="mt-3 text-xs leading-relaxed opacity-75 sm:text-sm">
+              Engineered around Meta &amp; Google platform daily standards (<strong class="text-gold">₹999/day</strong> for Indian brands · <strong class="text-emerald">$25/day</strong> for international campaigns). Slide your monthly media budget below to see how our 4.4x funnel architecture compounds revenue.
+            </p>
+
+            <div class="mt-7 space-y-5">
+              <div>
+                <div class="flex items-center justify-between text-xs font-medium">
+                  <span class="font-mono uppercase opacity-75">Monthly Ad Spend Budget (₹999/day Floor):</span>
+                  <span id="sim-spend-display" class="font-mono text-base font-bold text-gold">₹30,000 / mo</span>
+                </div>
+                <input
+                  id="sim-spend-slider"
+                  type="range"
+                  min="30000"
+                  max="500000"
+                  step="5000"
+                  value="30000"
+                  aria-label="Monthly Ad Spend Budget"
+                  class="mt-2.5 h-2 w-full appearance-none rounded-lg bg-white/15 accent-gold"
+                />
+                <div class="mt-1 flex justify-between font-mono text-[10px] opacity-60">
+                  <span>₹30,000 (₹999/day Min)</span>
+                  <span>₹2,50,000</span>
+                  <span>₹5,00,000+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div class="overflow-hidden rounded-2xl border hairline-border bg-black/30 p-5">
+                <div class="font-mono text-[10px] uppercase tracking-wider opacity-65">PROJECTED GROSS PIPELINE (4.4x)</div>
+                <div id="sim-revenue-display" class="mt-2 font-sans text-2xl font-extrabold tracking-tight text-emerald sm:text-3xl tabular-nums">
+                  ₹1,32,000
+                </div>
+                <div class="mt-1 font-mono text-[11px] opacity-70">Based on 4.4x verified agency average</div>
+              </div>
+
+              <div class="overflow-hidden rounded-2xl border hairline-border bg-black/30 p-5">
+                <div class="font-mono text-[10px] uppercase tracking-wider opacity-65">RECOMMENDED ZENMARK TIER</div>
+                <div id="sim-tier-display" class="mt-2 font-display text-2xl font-bold tracking-tight text-gold sm:text-3xl">
+                  Growth Plan
+                </div>
+                <div id="sim-tier-sub" class="mt-1 font-mono text-[11px] opacity-70">₹45,000 / mo Retainer</div>
+              </div>
+            </div>
+
+            <div class="mt-4 flex flex-col items-center justify-between gap-4 rounded-2xl border border-gold/30 bg-gold/10 p-4 sm:flex-row">
+              <div class="text-xs">
+                <span class="font-semibold text-gold">Want this exact funnel mapped for your niche?</span>
+                <p class=" opacity-75">Get a custom ad + funnel blueprint on WhatsApp in 15 minutes.</p>
+              </div>
+              <a
+                id="sim-whatsapp-link"
+                href="https://wa.me/917678439995?text=Hi%20Zenmark%2C%20I%20tested%20your%204.4x%20ROAS%20Simulator%20with%20a%20%E2%82%B950%2C000%2Fmo%20ad%20budget%20and%20want%20to%20discuss%20the%20Growth%20Plan."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="liquid-btn magnetic-el shrink-0 rounded-full bg-gold px-5 py-2.5 text-xs font-bold text-obsidian"
+              >
+                <span class="liquid-fill"></span>
+                <span class="liquid-label">Send to WhatsApp →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PAGE 4: OFFICIAL TRANSPARENT PRICING MATRIX & LEADERSHIP ARCHITECTS
+       ========================================================================= -->
+  <section id="pricing" class="relative border-t hairline-border py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Header + Currency Switcher (INR Default + USD/EUR/AED for International Clients) -->
+      <div class="flex flex-col justify-between gap-6 border-b hairline-border pb-10 md:flex-row md:items-end">
+        <div>
+          <div class="mb-3 flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-gold">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-gold"></span>
+            <span>OFFICIAL MONTHLY RETAINERS · ₹999/DAY (INDIA) · $25/DAY (GLOBAL) MIN AD SPEND</span>
+          </div>
+          <h2 class="font-display text-3xl font-bold tracking-tight sm:text-5xl">
+            Transparent pricing.<br />
+            <span class="font-serif italic font-normal text-gold">Tailored and customized ads spend gatekeeping.</span>
+          </h2>
+        </div>
+
+        <!-- Currency Switcher -->
+        <div class="flex flex-col items-start gap-2 md:items-end">
+          <span class="font-mono text-[10px] uppercase tracking-widest opacity-60">DISPLAY CURRENCY &amp; DAILY AD FLOOR</span>
+          <div class="inline-flex rounded-full border hairline-border glass-surface p-1 font-mono text-xs" role="group" aria-label="Currency selector">
+            <button type="button" data-currency="INR" class="currency-btn rounded-full bg-gold px-3 py-1 font-bold text-obsidian transition-colors">INR ₹</button>
+            <button type="button" data-currency="USD" class="currency-btn rounded-full px-3 py-1 opacity-70 hover:opacity-100 transition-colors">USD $</button>
+            <button type="button" data-currency="EUR" class="currency-btn rounded-full px-3 py-1 opacity-70 hover:opacity-100 transition-colors">EUR €</button>
+            <button type="button" data-currency="AED" class="currency-btn rounded-full px-3 py-1 opacity-70 hover:opacity-100 transition-colors">AED</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4-Tier Retainer Grid (Exact @cards Specification) -->
+      <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <!-- Card 01: LAUNCH PLAN -->
+        <div class="magnetic-card glass-surface flex flex-col justify-between overflow-hidden rounded-2xl p-6 transition-colors hover:border-gold/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-widest">
+              <span class="opacity-75">01 / LAUNCH PLAN</span>
+              <span class="shrink-0 rounded-full border border-emerald/40 bg-emerald/10 px-2 py-0.5 text-[9px] font-semibold text-emerald">META LEAD ENGINE</span>
+            </div>
+            <div class="mt-4 flex items-baseline gap-1.5 whitespace-nowrap tabular-nums">
+              <span class="price-val font-sans text-2xl font-extrabold tracking-tight sm:text-[28px]" data-inr="₹15,000" data-usd="$550" data-eur="€500" data-aed="2,000 AED" data-unit="/mo">₹15,000</span>
+              <span class="price-unit font-mono text-xs font-medium opacity-65">/mo</span>
+            </div>
+            <p class="mt-3 text-xs leading-relaxed opacity-80">
+              Engineered for domestic clinics and local service brands launching structured Meta acquisition with automated junk-lead filtering.
+            </p>
+            <ul class="mt-6 space-y-2.5 text-[11.5px] leading-snug">
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Consolidated Meta Ads Architecture (Scaling CBO + Testing Sandbox)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>9 High-Contrast Ad Creatives / Mo (4:5 Feed &amp; 9:16 Story Safe-Zones)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Conditional-Logic Instant Forms &amp; Direct WhatsApp Lead Routing</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Instagram Profile &amp; Highlights Conversion Audit</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Bi-Weekly Executive ROI Loom &amp; CPL Telemetry</span></li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            data-select-plan="Launch Plan (₹15,000/mo)"
+            class="plan-select-btn liquid-btn magnetic-el mt-8 w-full rounded-xl border hairline-border py-3 text-xs font-bold uppercase tracking-wider"
+          >
+            <span class="liquid-fill"></span>
+            <span class="liquid-label">SELECT LAUNCH PLAN →</span>
+          </button>
+        </div>
+
+        <!-- Card 02: GROWTH PLAN (Recommended Default with Gold/Emerald Trace) -->
+        <div class="magnetic-card relative overflow-hidden rounded-2xl p-[1.5px] gold-emerald-trace shadow-[0_0_40px_rgba(212,175,55,0.16)]">
+          <div class="flex h-full flex-col justify-between overflow-hidden rounded-[15px] bg-[#0B0B0F] text-[#F4F1EA] p-6">
+            <div>
+              <div class="flex items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-widest">
+                <span class="text-gold font-semibold">02 / GROWTH PLAN</span>
+                <span class="shrink-0 rounded-full bg-gold/20 px-2 py-0.5 text-[9px] font-bold text-gold">MOST POPULAR</span>
+              </div>
+              <div class="mt-4 flex items-baseline gap-1.5 whitespace-nowrap tabular-nums">
+                <span class="price-val font-sans text-2xl font-extrabold tracking-tight text-gold sm:text-[28px]" data-inr="₹45,000" data-usd="$1,250" data-eur="€1,150" data-aed="4,500 AED" data-unit="/mo">₹45,000</span>
+                <span class="price-unit font-mono text-xs font-medium text-gold/75">/mo</span>
+              </div>
+              <p class="mt-3 text-xs leading-relaxed opacity-85">
+                Full-funnel Meta acquisition + automated Click-to-WhatsApp qualification and organic authority distribution.
+              </p>
+              <ul class="mt-6 space-y-2.5 text-[11.5px] leading-snug">
+                <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>3-Campaign Meta Architecture (70% CBO Scale · 20% ABO Test · 10% Retargeting)</span></li>
+                <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>18 Programmatic Ad Variations / Mo across 3 Psychological Angles</span></li>
+                <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>8x–18x Click-to-WhatsApp (CTWA) Typebot Automated Qualifier</span></li>
+                <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Meta Pixel + Basic CAPI &amp; Persistent UTM Attribution Shield</span></li>
+                <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Organic Authority Grid Engine (12 Feed Carousels/Posts + Comment-to-DM)</span></li>
+                <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Bi-Weekly Executive ROI Telemetry &amp; 5-Asset Unboxing BOM</span></li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              data-select-plan="Growth Plan (₹45,000/mo)"
+              class="plan-select-btn liquid-btn magnetic-el mt-8 w-full rounded-xl bg-gold py-3 text-xs font-bold uppercase tracking-wider text-obsidian"
+            >
+              <span class="liquid-fill"></span>
+              <span class="liquid-label">SELECT GROWTH PLAN →</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 03: SCALE PLAN -->
+        <div class="magnetic-card glass-surface flex flex-col justify-between overflow-hidden rounded-2xl p-6 transition-colors hover:border-gold/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-widest">
+              <span class="opacity-75">03 / SCALE PLAN</span>
+              <span class="shrink-0 rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 text-[9px] font-semibold text-gold">DOMINANCE</span>
+            </div>
+            <div class="mt-4 flex items-baseline gap-1.5 whitespace-nowrap tabular-nums">
+              <span class="price-val font-sans text-2xl font-extrabold tracking-tight sm:text-[28px]" data-inr="₹80,000" data-usd="$2,250" data-eur="€2,050" data-aed="8,000 AED" data-unit="/mo">₹80,000</span>
+              <span class="price-unit font-mono text-xs font-medium opacity-65">/mo</span>
+            </div>
+            <p class="mt-3 text-xs leading-relaxed opacity-80">
+              Aggressive scaling with custom high-speed Next.js conversion funnels, server-side CAPI deduplication, and 60-second CRM automation.
+            </p>
+            <ul class="mt-6 space-y-2.5 text-[11.5px] leading-snug">
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Custom High-Speed Next.js/Astro 2-Step Funnel + Dynamic H1 Match</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>The 30-Ad Monthly Programmatic Creative Factory (4:5 &amp; 9:16)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Server-Side GTM + CAPI Deterministic event_id Deduplication (&gt;=8.5 EMQ)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>60-Second Speed-to-Lead &amp; 7-Touch 14-Day Automated Chase (n8n + Twenty CRM)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>The 1-to-15 Weekly Organic Waterfall + Customer Repayment Loyalty Engine</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-gold">+</span><span>Weekly CRO Sprint &amp; Priority Direct Slack/WhatsApp Pod Access</span></li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            data-select-plan="Scale Plan (₹80,000/mo)"
+            class="plan-select-btn liquid-btn magnetic-el mt-8 w-full rounded-xl border hairline-border py-3 text-xs font-bold uppercase tracking-wider"
+          >
+            <span class="liquid-fill"></span>
+            <span class="liquid-label">SELECT SCALE PLAN →</span>
+          </button>
+        </div>
+
+        <!-- Card 04: CUSTOM BUILD -->
+        <div class="magnetic-card glass-surface flex flex-col justify-between overflow-hidden rounded-2xl p-6 transition-colors hover:border-emerald/50">
+          <div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-widest">
+              <span class="opacity-75">04 / CUSTOM BUILD</span>
+              <span class="shrink-0 rounded-full border border-emerald/40 bg-emerald/10 px-2 py-0.5 text-[9px] font-semibold text-emerald">ENTERPRISE</span>
+            </div>
+            <div class="mt-4 flex items-baseline gap-1.5 whitespace-nowrap">
+              <span class="price-val font-display text-2xl font-bold tracking-tight text-emerald sm:text-[26px]" data-inr="Custom Quote" data-usd="Custom Quote" data-eur="Custom Quote" data-aed="Custom Quote">Custom Quote</span>
+            </div>
+            <p class="mt-3 text-xs leading-relaxed opacity-80">
+              Tailor-made 3D WebGL applications, sovereign self-hosted marketing infrastructure, and omnichannel scaling across Meta, Google &amp; LinkedIn.
+            </p>
+            <ul class="mt-6 space-y-2.5 text-[11.5px] leading-snug">
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Bespoke 3D WebGL &amp; 60fps Next.js Web Applications</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Omnichannel Paid Dominance (Meta + Google Search/PMax + LinkedIn B2B)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Sovereign Self-Hosted Stack (n8n Queue Mode, Twenty CRM, NocoDB, sGTM)</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>Sub-500ms LiveKit AI Voice Lead Qualifier &amp; Offline CRM CAPI Loop</span></li>
+              <li class="flex items-start gap-2"><span class="font-mono font-bold text-emerald">+</span><span>100% Source Code, IP Handover &amp; 5-Asset Executive BOM</span></li>
+            </ul>
+          </div>
+          <button
+            type="button"
+            data-select-plan="Custom Enterprise & Software Build"
+            class="plan-select-btn liquid-btn magnetic-el mt-8 w-full rounded-xl border border-emerald/40 bg-emerald/10 py-3 text-xs font-bold uppercase tracking-wider text-emerald"
+          >
+            <span class="liquid-fill"></span>
+            <span class="liquid-label">REQUEST CUSTOM QUOTE →</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Leadership Architects Dossier (End-to-End Developer & Marketing Expert) -->
+      <div id="architects" class="mt-20 pt-16 border-t hairline-border">
+        <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">DIRECT-TO-FOUNDER EXECUTION · ZERO JUNIOR HANDOFFS</span>
+            <h3 class="mt-2 font-display text-2xl font-bold sm:text-4xl">
+              Led by an <span class="text-gold font-serif italic font-normal">End-to-End Developer</span> &amp; a <span class="text-emerald font-serif italic font-normal">Marketing Expert</span>
+            </h3>
+          </div>
+          <span class="font-mono text-xs opacity-70">New Delhi, India · Udyam Registered</span>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <!-- Founder 1: End-to-End Developer -->
+          <div class="magnetic-card glass-surface relative overflow-hidden rounded-2xl p-6 sm:p-8">
+            <span class="crosshair top-3 right-3"></span>
+            <div class="flex items-center gap-3">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-gold/40 bg-gold/15 font-mono text-sm font-bold text-gold">
+                &lt;/&gt;
+              </div>
+              <div>
+                <div class="font-mono text-[10px] uppercase tracking-widest text-gold">CO-FOUNDER</div>
+                <h4 class="font-display text-xl font-bold sm:text-2xl">End-to-End Developer</h4>
+              </div>
+            </div>
+            <p class="mt-4 text-xs leading-relaxed opacity-80 sm:text-sm">
+              Systems Engineer &amp; Full-Stack Architect specializing in 60fps 3D web applications, resilient backend databases, custom CRM pipelines, and automated WhatsApp workflows that eliminate operational friction.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2 font-mono text-[10px]">
+              <span class="rounded-md border hairline-border px-2.5 py-1">Full-Stack Web Apps</span>
+              <span class="rounded-md border hairline-border px-2.5 py-1">3D WebGL &amp; GSAP</span>
+              <span class="rounded-md border hairline-border px-2.5 py-1">Database &amp; API Systems</span>
+              <span class="rounded-md border hairline-border px-2.5 py-1">Workflow Automation</span>
+            </div>
+          </div>
+
+          <!-- Founder 2: Marketing Expert -->
+          <div class="magnetic-card glass-surface relative overflow-hidden rounded-2xl p-6 sm:p-8">
+            <span class="crosshair top-3 right-3"></span>
+            <div class="flex items-center gap-3">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-emerald/40 bg-emerald/15 font-mono text-sm font-bold text-emerald">
+                4.4x
+              </div>
+              <div>
+                <div class="font-mono text-[10px] uppercase tracking-widest text-emerald">AGENCY OWNER</div>
+                <h4 class="font-display text-xl font-bold sm:text-2xl">Marketing Expert</h4>
+              </div>
+            </div>
+            <p class="mt-4 text-xs leading-relaxed opacity-80 sm:text-sm">
+              Paid Acquisition &amp; Funnel Strategist engineering high-converting Meta, Google, and LinkedIn ad systems alongside organic content engines that consistently deliver a verified 4.4x average ROAS across global markets.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2 font-mono text-[10px]">
+              <span class="rounded-md border hairline-border px-2.5 py-1">Meta &amp; Google Ads</span>
+              <span class="rounded-md border hairline-border px-2.5 py-1">LinkedIn B2B Funnels</span>
+              <span class="rounded-md border hairline-border px-2.5 py-1">4.4x ROAS Scaling</span>
+              <span class="rounded-md border hairline-border px-2.5 py-1">Organic Brand Growth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       PAGE 5: INSTANT PROJECT CONFIGURATOR + HALFTONE WORDMARK SHOCKWAVE FOOTER
+       (Integrates background.md HalftoneWordmarkFooter with Gold/Emerald spring dots)
+       ========================================================================= -->
+  <section id="configurator" class="relative border-t hairline-border pt-20 pb-14">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div class="glass-surface rounded-3xl p-6 sm:p-10">
+        <div class="text-center">
+          <span class="font-mono text-[10px] uppercase tracking-[0.22em] text-gold">DIRECT DISPATCH TO +91 7678439995</span>
+          <h2 class="mt-2 font-display text-2xl font-bold sm:text-4xl">
+            Configure your growth &amp; engineering scope
+          </h2>
+          <p class="mx-auto mt-2 max-w-lg text-xs opacity-75 sm:text-sm">
+            Select your required services and retainer tier below. Our system formats your brief and connects you directly with our founders on WhatsApp in one click.
+          </p>
+        </div>
+
+        <form id="scope-form" class="mt-8 space-y-6">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="client-name" class="block font-mono text-[10px] uppercase tracking-wider opacity-75">Your Name / Brand</label>
+              <input
+                id="client-name"
+                type="text"
+                required
+                placeholder="e.g., Arjun Mehta — Apex Labs"
+                class="mt-1.5 w-full rounded-xl border hairline-border bg-black/30 px-4 py-3 text-xs focus:border-gold focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="client-region" class="block font-mono text-[10px] uppercase tracking-wider opacity-75">Target Market</label>
+              <select
+                id="client-region"
+                class="mt-1.5 w-full rounded-xl border hairline-border bg-black/40 px-4 py-3 text-xs focus:border-gold focus:outline-none"
+              >
+                <option value="India">India</option>
+                <option value="Gulf (UAE / KSA)">Gulf (UAE / KSA)</option>
+                <option value="Europe (UK / EU)">Europe (UK / EU)</option>
+                <option value="United States">United States</option>
+                <option value="Global Multi-Region">Global Multi-Region</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div>
+              <label for="selected-plan-input" class="block font-mono text-[10px] uppercase tracking-wider opacity-75">Selected Retainer / Build Tier</label>
+              <select
+                id="selected-plan-input"
+                class="mt-1.5 w-full rounded-xl border hairline-border bg-black/40 px-4 py-3 text-xs focus:border-gold focus:outline-none"
+              >
+                <option value="Growth Plan (₹45,000/mo)">Growth Plan — ₹45,000 / month (Recommended)</option>
+                <option value="Launch Plan (₹15,000/mo)">Launch Plan — ₹15,000 / month</option>
+                <option value="Scale Plan (₹80,000/mo)">Scale Plan — ₹80,000 / month</option>
+                <option value="Custom Enterprise & Software Build">Custom Enterprise &amp; Full-Stack Software Quote</option>
+              </select>
+            </div>
+            <div>
+              <label for="selected-service-input" class="block font-mono text-[10px] uppercase tracking-wider opacity-75">Primary Objective</label>
+              <select
+                id="selected-service-input"
+                class="mt-1.5 w-full rounded-xl border hairline-border bg-black/40 px-4 py-3 text-xs focus:border-gold focus:outline-none"
+              >
+                <option value="Full-Stack Growth (Paid Ads + Funnels + WhatsApp CRM)">Full-Stack Growth (Paid Ads + Funnels + WhatsApp CRM)</option>
+                <option value="Paid Advertising (Meta, Google, LinkedIn)">Paid Advertising (Meta, Google, LinkedIn — 4.4x Target)</option>
+                <option value="Custom 3D Website / Full-Stack Web App">Custom 3D Website / Full-Stack Web App</option>
+                <option value="Organic Marketing & Automated Workflows">Organic Marketing &amp; Automated Workflows</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center justify-between gap-4 pt-2 sm:flex-row">
+            <div id="form-status-msg" class="font-mono text-xs text-emerald">
+              ✦ Tailored Ad Spend Gatekeeping (₹999/day India · $25/day Global) · Instant Founder Response
+            </div>
+            <button
+              type="submit"
+              class="liquid-btn magnetic-el w-full sm:w-auto rounded-full bg-gold px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-obsidian shadow-[0_0_25px_rgba(212,175,55,0.35)]"
+            >
+              <span class="liquid-fill"></span>
+              <span class="liquid-label">Launch Brief on WhatsApp (+91 7678439995) ↗</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Halftone Wordmark Footer (from background.md — click to send shockwave!) -->
+  <footer id="halftone-footer" class="relative h-[480px] sm:h-[540px] w-full overflow-hidden border-t hairline-border select-none">
+    <canvas id="halftone-canvas" aria-hidden="true" class="absolute inset-0 block h-full w-full"></canvas>
+
+    <div class="relative z-10 mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 pt-8 font-mono text-[11px] uppercase tracking-[0.16em] sm:grid-cols-4 sm:px-6 lg:px-8">
+      <div class="col-span-2 sm:col-span-1">
+        <strong class="block font-bold text-gold">ZENMARK® AGENCY</strong>
+        <span class="mt-1 block opacity-60">Udyam Registered Company</span>
+        <span class="mt-0.5 block opacity-60">New Delhi, India · ©2026</span>
+      </div>
+
+      <div>
+        <h3 class="opacity-45">SYSTEMS</h3>
+        <ul class="mt-2 space-y-1.5">
+          <li><a href="#services" class="hover:text-gold transition-colors">Paid Ads (4.4x ROAS)</a></li>
+          <li><a href="#services" class="hover:text-gold transition-colors">Organic Growth</a></li>
+          <li><a href="#services" class="hover:text-gold transition-colors">WhatsApp Workflows</a></li>
+          <li><a href="#services" class="hover:text-gold transition-colors">Custom 3D Web Apps</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="opacity-45">RETAINERS</h3>
+        <ul class="mt-2 space-y-1.5">
+          <li><a href="#pricing" class="hover:text-gold transition-colors">Launch · ₹15,000/mo</a></li>
+          <li><a href="#pricing" class="hover:text-gold transition-colors">Growth · ₹45,000/mo</a></li>
+          <li><a href="#pricing" class="hover:text-gold transition-colors">Scale · ₹80,000/mo</a></li>
+          <li><a href="#pricing" class="hover:text-gold transition-colors">Custom Enterprise</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="opacity-45">DIRECT DESK</h3>
+        <ul class="mt-2 space-y-1.5">
+          <li><a href="https://wa.me/917678439995" target="_blank" rel="noopener noreferrer" class="text-emerald hover:underline">+91 7678439995 ↗</a></li>
+          <li><span class="opacity-70">India · EU · Gulf · US</span></li>
+          <li>
+            <button id="back-to-top-btn" type="button" class="mt-2 inline-flex items-center gap-1 text-gold hover:underline">
+              Back to top ↑
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pointer-events-none relative z-10 mx-auto mt-6 flex max-w-7xl justify-between px-4 font-mono text-[10px] uppercase tracking-widest opacity-50 sm:px-6 lg:px-8">
+      <span>MOVE CURSOR OVER WORDMARK · CLICK ANYWHERE FOR SHOCKWAVE</span>
+      <span id="footer-tier-indicator">3-TIER ADAPTIVE ENGINE ACTIVE</span>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       COMPLETE INTERACTIVE ENGINE:
+       1. Web Audio API Synthesizer (Click, Hover, Liquid Fill & Shockwave Sounds)
+       2. 3-Tier Hardware Auto-Detection & Live Tier Switcher
+       3. Cursor-Velocity Color-Shifting WebGL Fluid Shader (animation 3.md)
+       4. 3D Twisted Sand & Filament Sculpture (animation 1.md)
+       5. Halftone Wordmark Shockwave Footer (background.md)
+       6. ROAS Simulator, Region Explorer, Currency Switcher & WhatsApp Dispatcher
+       ========================================================================= -->
+  <script>
+    (function () {
+      'use strict';
+
+      // -----------------------------------------------------------------------
+      // 1. GLOBAL STATE & 3-TIER HARDWARE AUTO-DETECTION
+      // -----------------------------------------------------------------------
+      const state = {
+        theme: 'dark',
+        soundEnabled: true,
+        tier: 3, // 1 = Basic Phone, 2 = Average Device, 3 = High-End
+        heroMode: 'hybrid', // 'hybrid' | 'fluid' | 'sand'
+        currency: 'INR',
+        cursorHue: 45, // 45 (24K Gold) -> 158 (Emerald) based on cursor velocity
+        pointer: {
+          x: window.innerWidth * 0.5,
+          y: window.innerHeight * 0.4,
+          vx: 0,
+          vy: 0,
+          speed: 0,
+          active: false
+        }
+      };
+
+      function detectHardwareTier() {
+        const cores = navigator.hardwareConcurrency || 4;
+        const mem = navigator.deviceMemory || 4;
+        const isSmallScreen = window.innerWidth < 640;
+        if (cores <= 4 && (mem <= 2 || isSmallScreen)) {
+          return 1;
+        }
+        if (cores <= 6 || mem <= 4 || isSmallScreen) {
+          return 2;
+        }
+        return 3;
+      }
+
+      state.tier = detectHardwareTier();
+
+      // -----------------------------------------------------------------------
+      // 2. WEB AUDIO API PROCEDURAL SOUND SYNTHESIZER (ZERO MP3 BLOAT)
+      // -----------------------------------------------------------------------
+      let audioCtx = null;
+
+      function ensureAudio() {
+        if (!state.soundEnabled) return null;
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            audioCtx = new AudioContextClass();
+          }
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+        return audioCtx;
+      }
+
+      function playSound(type) {
+        const ctx = ensureAudio();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        if (type === 'click') {
+          // Crisp two-tone luxury mechanical click
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(1180, now + 0.028);
+          gain.gain.setValueAtTime(0.11, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.06);
+        } else if (type === 'hover') {
+          // Subtle watch-escapement tick on magnetic buttons/cards
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(195, now);
+          osc.frequency.exponentialRampToValueAtTime(260, now + 0.015);
+          gain.gain.setValueAtTime(0.035, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.022);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.025);
+        } else if (type === 'shockwave') {
+          // Deep harmonic pulse for footer shockwave
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(110, now);
+          osc.frequency.exponentialRampToValueAtTime(38, now + 0.28);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.34);
+        }
+      }
+
+      // Global Click Listener for Sound + Visual Ripple Burst + Sand Particle Shockwave
+      window.addEventListener('pointerdown', (e) => {
+        state.pointer.clickTime = performance.now();
+        state.pointer.clickX = e.clientX;
+        state.pointer.clickY = e.clientY;
+        playSound('click');
+        const burst = document.createElement('div');
+        burst.className = 'click-burst';
+        burst.style.left = e.clientX + 'px';
+        burst.style.top = e.clientY + 'px';
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 560);
+      });
+
+      // -----------------------------------------------------------------------
+      // 3. CUSTOM MAGNETIC CURSOR & VELOCITY COLOR-SHIFT TELEMETRY
+      // -----------------------------------------------------------------------
+      const cursorDot = document.getElementById('custom-cursor-dot');
+      const cursorRing = document.getElementById('custom-cursor-ring');
+      const cursorSwatch = document.getElementById('cursor-swatch');
+      const cursorHueText = document.getElementById('cursor-hue-text');
+
+      let ringX = window.innerWidth * 0.5;
+      let ringY = window.innerHeight * 0.4;
+
+      window.addEventListener('pointermove', (e) => {
+        const dx = e.clientX - state.pointer.x;
+        const dy = e.clientY - state.pointer.y;
+        state.pointer.vx = dx;
+        state.pointer.vy = dy;
+        state.pointer.speed = Math.min(60, Math.hypot(dx, dy));
+        state.pointer.x = e.clientX;
+        state.pointer.y = e.clientY;
+        state.pointer.active = true;
+
+        // Shift hue smoothly between 45 (Gold) and 158 (Emerald) based on cursor movement
+        const targetHue = 45 + Math.min(1, state.pointer.speed / 28) * 113;
+        state.cursorHue += (targetHue - state.cursorHue) * 0.22;
+
+        if (cursorDot) {
+          cursorDot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+          cursorDot.style.backgroundColor = `hsl(${Math.round(state.cursorHue)}, 92%, 62%)`;
+        }
+        if (cursorSwatch && cursorHueText) {
+          const isEmeraldShift = state.cursorHue > 95;
+          cursorSwatch.style.backgroundColor = `hsl(${Math.round(state.cursorHue)}, 78%, 54%)`;
+          cursorHueText.textContent = isEmeraldShift
+            ? 'VELOCITY SHIFT: EMERALD GROWTH (#10B981)'
+            : 'VELOCITY SHIFT: 24K GOLD (#D4AF37)';
+        }
+      });
+
+      function animateCursorRing() {
+        ringX += (state.pointer.x - ringX) * 0.18;
+        ringY += (state.pointer.y - ringY) * 0.18;
+        state.pointer.speed *= 0.92;
+        state.cursorHue += (45 - state.cursorHue) * 0.03;
+        if (cursorRing && state.tier >= 2) {
+          cursorRing.style.transform = `translate3d(${ringX.toFixed(1)}px, ${ringY.toFixed(1)}px, 0) translate(-50%, -50%)`;
+          cursorRing.style.borderColor = `hsla(${Math.round(state.cursorHue)}, 90%, 60%, 0.65)`;
+        }
+        requestAnimationFrame(animateCursorRing);
+      }
+      requestAnimationFrame(animateCursorRing);
+
+      // Magnetic Pull on Buttons & Cards
+      document.querySelectorAll('.magnetic-el').forEach((el) => {
+        el.addEventListener('pointerenter', () => {
+          playSound('hover');
+          if (cursorRing) {
+            cursorRing.style.width = '52px';
+            cursorRing.style.height = '52px';
+          }
+        });
+        el.addEventListener('pointermove', (e) => {
+          if (state.tier === 1) return;
+          const rect = el.getBoundingClientRect();
+          const mx = (e.clientX - (rect.left + rect.width / 2)) * 0.22;
+          const my = (e.clientY - (rect.top + rect.height / 2)) * 0.22;
+          el.style.transform = `translate3d(${mx.toFixed(1)}px, ${my.toFixed(1)}px, 0)`;
+        });
+        el.addEventListener('pointerleave', () => {
+          el.style.transform = '';
+          if (cursorRing) {
+            cursorRing.style.width = '36px';
+            cursorRing.style.height = '36px';
+          }
+        });
+      });
+
+      document.querySelectorAll('.magnetic-card').forEach((card) => {
+        card.addEventListener('pointerenter', () => playSound('hover'));
+        card.addEventListener('pointermove', (e) => {
+          if (state.tier === 1) return;
+          const rect = card.getBoundingClientRect();
+          const nx = (e.clientX - rect.left) / rect.width - 0.5;
+          const ny = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(1000px) rotateY(${(nx * 5).toFixed(2)}deg) rotateX(${(-ny * 5).toFixed(2)}deg) translateY(-2px)`;
+        });
+        card.addEventListener('pointerleave', () => {
+          card.style.transform = '';
+        });
+      });
+
+      // -----------------------------------------------------------------------
+      // 4. LAYER 1 HERO: WEBGL GLSL CURSOR-COLOR-SHIFTING FLUID SHADER
+      //    (Adapted from animation 3.md — shifts Gold <-> Emerald on cursor move)
+      // -----------------------------------------------------------------------
+      const fluidCanvas = document.getElementById('fluid-webgl-canvas');
+      const heroSection = document.getElementById('hero');
+      let heroVisible = true;
+
+      if ('IntersectionObserver' in window && heroSection) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          heroVisible = entries[0] ? entries[0].isIntersecting : true;
+        }, { threshold: 0.05 });
+        heroObserver.observe(heroSection);
+      }
+
+      (function initFluidShader() {
+        if (!fluidCanvas || !heroSection) return;
+        const gl = fluidCanvas.getContext('webgl', { powerPreference: 'high-performance', alpha: false });
+        if (!gl) return;
+
+        let fluidRafId = null;
+        fluidCanvas.addEventListener('webglcontextlost', (e) => {
+          e.preventDefault();
+          if (fluidRafId) cancelAnimationFrame(fluidRafId);
+          console.warn('WebGL context lost. Halting render loop.');
+        }, false);
+
+        fluidCanvas.addEventListener('webglcontextrestored', () => {
+          console.info('WebGL context restored. Recompiling shaders.');
+          initFluidShader();
+        }, false);
+
+        const vsSource = `
+          attribute vec2 a_position;
+          void main() {
+            gl_Position = vec4(a_position, 0.0, 1.0);
+          }
+        `;
+
+        const fsSource = `
+          #ifdef GL_FRAGMENT_PRECISION_HIGH
+          precision highp float;
+          #else
+          precision mediump float;
+          #endif
+          uniform float u_time;
+          uniform vec2 u_resolution;
+          uniform vec2 u_mouse;
+          uniform float u_shift;
+          uniform float u_lightMode;
+
+          float hash(vec2 p) {
+            return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+          }
+
+          float noise(vec2 p) {
+            vec2 i = floor(p);
+            vec2 f = fract(p);
+            vec2 u = f * f * (3.0 - 2.0 * f);
+            return mix(
+              mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
+              mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+              u.y
+            );
+          }
+
+          float fbm(vec2 p) {
+            float v = 0.0;
+            float a = 0.5;
+            mat2 rot = mat2(0.8, 0.6, -0.6, 0.8);
+            for (int i = 0; i < 4; i++) {
+              v += a * noise(p);
+              p = rot * p * 2.02;
+              a *= 0.5;
+            }
+            return v;
+          }
+
+          void main() {
+            vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);
+            vec2 mouse = (u_mouse - 0.5 * u_resolution.xy) / min(u_resolution.x, u_resolution.y);
+
+            float mDist = length(uv - mouse);
+            vec2 mWarp = normalize(uv - mouse + 0.0001) * exp(-mDist * 3.2) * (0.32 + u_shift * 0.25);
+            vec2 p = uv * 2.1 - mWarp;
+
+            vec2 q = vec2(
+              fbm(p + vec2(0.0, 0.0) + u_time * 0.14),
+              fbm(p + vec2(5.2, 1.3) - u_time * 0.11)
+            );
+            vec2 r = vec2(
+              fbm(p + 2.8 * q + vec2(1.7, 9.2) + u_time * 0.10),
+              fbm(p + 2.8 * q + vec2(8.3, 2.8) - u_time * 0.09)
+            );
+
+            float f = fbm(p + 2.4 * r);
+            float bands = sin(f * 14.0 - u_time * 1.1) * 0.5 + 0.5;
+
+            // Strict 3-Color Behavioral Palette: Obsidian/Alabaster + 24K Gold + Emerald Shift
+            vec3 baseBg = mix(vec3(0.027, 0.027, 0.035), vec3(0.956, 0.945, 0.918), u_lightMode);
+            vec3 goldCol = vec3(0.831, 0.686, 0.216);
+            vec3 emeraldCol = vec3(0.063, 0.725, 0.506);
+
+            // Cursor proximity & velocity dynamically shifts the fluid between Gold and Emerald
+            float cursorGlow = exp(-mDist * 2.6);
+            vec3 activeAccent = mix(goldCol, emeraldCol, clamp(u_shift + cursorGlow * 0.55, 0.0, 1.0));
+
+            vec3 col = mix(baseBg, activeAccent * (u_lightMode > 0.5 ? 0.85 : 0.42), smoothstep(0.18, 0.78, f));
+            col = mix(col, mix(goldCol, emeraldCol, 1.0 - u_shift) * 0.55, pow(bands, 3.6) * (0.45 + cursorGlow * 0.45));
+
+            gl_FragColor = vec4(col, 1.0);
+          }
+        `;
+
+        function compile(type, src) {
+          const s = gl.createShader(type);
+          gl.shaderSource(s, src);
+          gl.compileShader(s);
+          if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+            console.warn('WebGL Shader Compile Error:', gl.getShaderInfoLog(s));
+            gl.deleteShader(s);
+            return null;
+          }
+          return s;
+        }
+
+        const vs = compile(gl.VERTEX_SHADER, vsSource);
+        const fs = compile(gl.FRAGMENT_SHADER, fsSource);
+        if (!vs || !fs) {
+          console.warn('WebGL Shaders failed to compile. Shifting to sand mode.');
+          state.heroMode = 'sand';
+          return;
+        }
+
+        const prog = gl.createProgram();
+        gl.attachShader(prog, vs);
+        gl.attachShader(prog, fs);
+        gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+          console.warn('WebGL Program Link Error:', gl.getProgramInfoLog(prog));
+          state.heroMode = 'sand';
+          return;
+        }
+        gl.useProgram(prog);
+
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+
+        const posLoc = gl.getAttribLocation(prog, 'a_position');
+        gl.enableVertexAttribArray(posLoc);
+        gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+        const timeLoc = gl.getUniformLocation(prog, 'u_time');
+        const resLoc = gl.getUniformLocation(prog, 'u_resolution');
+        const mouseLoc = gl.getUniformLocation(prog, 'u_mouse');
+        const shiftLoc = gl.getUniformLocation(prog, 'u_shift');
+        const lightLoc = gl.getUniformLocation(prog, 'u_lightMode');
+
+        let mouseX = 300, mouseY = 300;
+        let cachedHeroWidth = window.innerWidth;
+        let cachedHeroHeight = window.innerHeight;
+
+        function resizeFluid() {
+          const rect = heroSection.getBoundingClientRect();
+          cachedHeroWidth = Math.max(1, rect.width);
+          cachedHeroHeight = Math.max(1, rect.height);
+          const scale = state.tier === 1 ? 0.5 : state.tier === 2 ? 0.85 : 1.15;
+          fluidCanvas.width = Math.max(1, Math.round(cachedHeroWidth * scale));
+          fluidCanvas.height = Math.max(1, Math.round(cachedHeroHeight * scale));
+          gl.viewport(0, 0, fluidCanvas.width, fluidCanvas.height);
+        }
+
+        resizeFluid();
+        window.addEventListener('resize', resizeFluid);
+
+        function renderFluid(now) {
+          if (heroVisible && state.heroMode !== 'sand') {
+            const scale = fluidCanvas.width / cachedHeroWidth;
+            const tx = state.pointer.x * scale;
+            const ty = (state.pointer.y + window.scrollY) * scale;
+            mouseX += (tx - mouseX) * 0.09;
+            mouseY += (ty - mouseY) * 0.09;
+
+            const shiftNorm = Math.max(0, Math.min(1, (state.cursorHue - 45) / 113));
+            gl.uniform1f(timeLoc, now * 0.001);
+            gl.uniform2f(resLoc, fluidCanvas.width, fluidCanvas.height);
+            gl.uniform2f(mouseLoc, mouseX, fluidCanvas.height - mouseY);
+            gl.uniform1f(shiftLoc, shiftNorm);
+            gl.uniform1f(lightLoc, state.theme === 'light' ? 1.0 : 0.0);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+          }
+          requestAnimationFrame(renderFluid);
+        }
+        requestAnimationFrame(renderFluid);
+      })();
+
+      // -----------------------------------------------------------------------
+      // 5. LAYER 2 HERO: 3D TWISTED SAND & FILAMENT SCULPTURE (animation 1.md)
+      //    Dynamically scales particle count by Device Tier & shifts Gold/Emerald
+      // -----------------------------------------------------------------------
+      const sandCanvas = document.getElementById('sand-sculpture-canvas');
+
+      (function initSandSculpture() {
+        if (!sandCanvas || !heroSection) return;
+        const ctx = sandCanvas.getContext('2d');
+        if (!ctx) return;
+
+        const MAX_PARTICLES = 3800;
+        const STRIDE = 11;
+        const pData = new Float32Array(MAX_PARTICLES * STRIDE);
+
+        for (let i = 0; i < MAX_PARTICLES; i++) {
+          const idx = i * STRIDE;
+          pData[idx + 0] = Math.random();
+          pData[idx + 1] = (Math.random() - 0.5) * 2;
+          pData[idx + 2] = (Math.random() - 0.5) * 46;
+          pData[idx + 3] = Math.random() * Math.PI * 2;
+          pData[idx + 4] = 0.0004 + Math.random() * 0.0008;
+          pData[idx + 5] = 0.75 + Math.random() * 1.85;
+          pData[idx + 6] = Math.random();
+          pData[idx + 7] = 0;
+          pData[idx + 8] = 0;
+          pData[idx + 9] = 0;
+          pData[idx + 10] = 0;
+        }
+
+        let width = 1, height = 1, dpr = 1;
+
+        function resizeSand() {
+          const rect = heroSection.getBoundingClientRect();
+          width = Math.max(1, Math.round(rect.width));
+          height = Math.max(1, Math.round(rect.height));
+          dpr = state.tier === 1 ? 1 : state.tier === 2 ? 1.25 : Math.min(window.devicePixelRatio || 1, 1.75);
+          sandCanvas.width = Math.round(width * dpr);
+          sandCanvas.height = Math.round(height * dpr);
+        }
+
+        resizeSand();
+        window.addEventListener('resize', resizeSand);
+
+        function sampleRibbon(u, v, radialExtra, time) {
+          const xNorm = (u - 0.5) * 2;
+          const centerWaveY = Math.sin(xNorm * 2.5 + time * 0.85) * (height * 0.075);
+          const twistAngle = xNorm * 4.1 - time * 1.1 + v * 1.75;
+          const envelope = Math.exp(-xNorm * xNorm * 1.3);
+          const torusLoop = Math.sin(u * Math.PI);
+          const ribbonRadius = (height * 0.18 * envelope + 26 * torusLoop) * (0.35 + 0.65 * Math.abs(v)) + radialExtra;
+
+          const rx = u * width + Math.cos(twistAngle * 1.45) * 32 * envelope;
+          const ry = height * 0.42 + centerWaveY + Math.sin(twistAngle) * ribbonRadius;
+          const rz = Math.cos(twistAngle) * ribbonRadius;
+          return { rx, ry, rz };
+        }
+
+        function renderSand(now) {
+          if (heroVisible && state.heroMode !== 'fluid') {
+            const time = now * 0.001;
+            const isDark = state.theme === 'dark';
+            const px = state.pointer.x;
+            const py = state.pointer.y + window.scrollY;
+            const interactionRadius = 155;
+            const rSq = interactionRadius * interactionRadius;
+
+            const activeParticles = state.tier === 1 ? 850 : state.tier === 2 ? 2100 : MAX_PARTICLES;
+            const activeFilaments = state.tier === 1 ? 10 : state.tier === 2 ? 18 : 26;
+
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, width, height);
+
+            // Subtle Background Watermark ("ZENMARK")
+            ctx.save();
+            ctx.font = `800 ${Math.round(width * 0.17)}px "Syne", sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = isDark ? 'rgba(244, 241, 234, 0.022)' : 'rgba(13, 13, 15, 0.032)';
+            ctx.fillText('ZENMARK', width * 0.5, height * 0.42);
+            ctx.restore();
+
+            // Interwoven Metallic Gold/Emerald Filaments
+            const shiftRatio = Math.max(0, Math.min(1, (state.cursorHue - 45) / 113));
+            for (let f = 0; f < activeFilaments; f++) {
+              const vLane = (f / Math.max(1, activeFilaments - 1) - 0.5) * 2;
+              ctx.beginPath();
+              const segments = state.tier === 1 ? 36 : 56;
+              for (let s = 0; s <= segments; s++) {
+                const u = s / segments;
+                const pt = sampleRibbon(u, vLane, Math.sin(f * 1.7 + time) * 8, time);
+                let fx = pt.rx;
+                let fy = pt.ry;
+
+                if (state.pointer.active) {
+                  const dx = fx - px;
+                  const dy = fy - py;
+                  const distSq = dx * dx + dy * dy;
+                  if (distSq < rSq) {
+                    const dist = Math.sqrt(distSq) + 0.001;
+                    const pull = (1 - dist / interactionRadius) * 40;
+                    fx += (dx / dist) * pull - (dy / dist) * pull * 0.65;
+                    fy += (dy / dist) * pull + (dx / dist) * pull * 0.65;
+                  }
+                }
+                if (s === 0) ctx.moveTo(fx, fy);
+                else ctx.lineTo(fx, fy);
+              }
+              const depthAlpha = 0.09 + ((f % 5) / 5) * 0.16;
+              const rCol = Math.round(212 * (1 - shiftRatio) + 16 * shiftRatio);
+              const gCol = Math.round(175 * (1 - shiftRatio) + 185 * shiftRatio);
+              const bCol = Math.round(55 * (1 - shiftRatio) + 129 * shiftRatio);
+              ctx.strokeStyle = `rgba(${rCol}, ${gCol}, ${bCol}, ${depthAlpha})`;
+              ctx.lineWidth = 0.9;
+              ctx.stroke();
+            }
+
+            // Advect & Render Metallic Sand Particles with Cursor Color Shift
+            for (let i = 0; i < activeParticles; i++) {
+              const idx = i * STRIDE;
+              let u = (pData[idx + 0] + pData[idx + 4]) % 1;
+              pData[idx + 0] = u;
+              const v = pData[idx + 1];
+              const radOff = pData[idx + 2];
+              const size = pData[idx + 5];
+              const shade = pData[idx + 6];
+              let ox = pData[idx + 7];
+              let oy = pData[idx + 8];
+              let vx = pData[idx + 9];
+              let vy = pData[idx + 10];
+
+              const base = sampleRibbon(u, v, radOff, time);
+              const curX = base.rx + ox;
+              const curY = base.ry + oy;
+
+              let nearPointer = 0;
+              const clickAge = state.pointer.clickTime ? (now - state.pointer.clickTime) : 99999;
+              if (clickAge < 520) {
+                const cdx = curX - state.pointer.clickX;
+                const cdy = curY - (state.pointer.clickY + window.scrollY);
+                const cd = Math.sqrt(cdx * cdx + cdy * cdy) + 0.001;
+                if (cd < 260) {
+                  const burstForce = (1 - cd / 260) * (1 - clickAge / 520) * 6.5;
+                  vx += (cdx / cd) * burstForce;
+                  vy += (cdy / cd) * burstForce;
+                  nearPointer = Math.max(nearPointer, 1 - cd / 260);
+                }
+              }
+              if (state.pointer.active) {
+                const dx = curX - px;
+                const dy = curY - py;
+                const d2 = dx * dx + dy * dy;
+                if (d2 < rSq) {
+                  const d = Math.sqrt(d2) + 0.001;
+                  nearPointer = 1 - d / interactionRadius;
+                  const force = nearPointer * 2.9;
+                  vx += (dx / d) * force - (dy / d) * force * 0.75 + state.pointer.vx * 0.05;
+                  vy += (dy / d) * force + (dx / d) * force * 0.75 + state.pointer.vy * 0.05;
+                }
+              }
+
+              vx = (vx - ox * 0.045) * 0.86;
+              vy = (vy - oy * 0.045) * 0.86;
+              ox += vx;
+              oy += vy;
+
+              pData[idx + 7] = ox;
+              pData[idx + 8] = oy;
+              pData[idx + 9] = vx;
+              pData[idx + 10] = vy;
+
+              const depthNorm = Math.max(0, Math.min(1, (base.rz + 90) / 180));
+              const emeraldBlend = Math.min(1, shiftRatio * 0.7 + nearPointer * 0.65);
+
+              // Blend between 24K Gold (212, 175, 55) and Emerald (16, 185, 129)
+              const r = Math.round((185 + shade * 55) * (1 - emeraldBlend) + 16 * emeraldBlend);
+              const g = Math.round((148 + shade * 55) * (1 - emeraldBlend) + (185 + shade * 40) * emeraldBlend);
+              const b = Math.round((45 + shade * 40) * (1 - emeraldBlend) + (129 + shade * 35) * emeraldBlend);
+
+              ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${0.38 + depthNorm * 0.58})`;
+              const drawSize = size * (0.65 + depthNorm * 0.65);
+              ctx.beginPath();
+              ctx.arc(curX, curY, drawSize, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+          requestAnimationFrame(renderSand);
+        }
+        requestAnimationFrame(renderSand);
+      })();
+
+      // Pause Hero Canvases when scrolled out of view (0% GPU off-screen rule)
+      if ('IntersectionObserver' in window && heroSection) {
+        const heroIO = new IntersectionObserver((entries) => {
+          heroVisible = entries[0] ? entries[0].isIntersecting : true;
+        }, { threshold: 0.04 });
+        heroIO.observe(heroSection);
+      }
+
+      // -----------------------------------------------------------------------
+      // 6. HALFTONE WORDMARK SHOCKWAVE FOOTER (Adapted from background.md)
+      // -----------------------------------------------------------------------
+      (function initHalftoneFooter() {
+        const footerRoot = document.getElementById('halftone-footer');
+        const canvas = document.getElementById('halftone-canvas');
+        if (!footerRoot || !canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let w = 0, h = 0, dpr = 1;
+        let px = -1e5, py = -1e5;
+        let visible = true;
+        let ring = { x: 0, y: 0, t: -1 };
+        let dots = new Float32Array(0);
+        let count = 0;
+
+        function layoutHalftone() {
+          const rect = footerRoot.getBoundingClientRect();
+          w = Math.max(1, Math.round(rect.width));
+          h = Math.max(1, Math.round(rect.height));
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = Math.round(w * dpr);
+          canvas.height = Math.round(h * dpr);
+
+          const mask = document.createElement('canvas');
+          mask.width = w;
+          mask.height = h;
+          const m = mask.getContext('2d', { willReadFrequently: true });
+          if (!m) return;
+
+          const word = 'zenmark';
+          m.font = '800 100px "Syne", sans-serif';
+          const measured = m.measureText(word).width || 100;
+          const fitSize = (w * 0.96 / measured) * 100;
+          m.font = `800 ${fitSize}px "Syne", sans-serif`;
+          const box = m.measureText(word);
+          const cap = box.actualBoundingBoxAscent || fitSize * 0.72;
+          m.fillStyle = '#000';
+          m.textBaseline = 'alphabetic';
+          m.fillText(word, (w - box.width) / 2, h + cap * 0.16);
+          const img = m.getImageData(0, 0, w, h).data;
+
+          const gap = state.tier === 1 ? 10 : state.tier === 2 ? 7 : 6;
+          const cols = Math.ceil(w / gap);
+          const rows = Math.ceil(h / gap);
+          const tmp = [];
+
+          for (let gy = 0; gy < rows; gy++) {
+            for (let gx = 0; gx < cols; gx++) {
+              let sum = 0;
+              for (let sy = 0; sy < 3; sy++) {
+                for (let sx = 0; sx < 3; sx++) {
+                  const x = Math.min(w - 1, Math.floor(gx * gap + ((sx + 0.5) * gap) / 3));
+                  const y = Math.min(h - 1, Math.floor(gy * gap + ((sy + 0.5) * gap) / 3));
+                  sum += img[(y * w + x) * 4 + 3];
+                }
+              }
+              const cov = sum / (9 * 255);
+              if (cov < 0.06) continue;
+              const hx = gx * gap + gap / 2;
+              const hy = gy * gap + gap / 2;
+              const rad = Math.sqrt(cov) * gap * 0.55;
+              tmp.push(hx, hy, 0, 0, hx, hy, rad);
+            }
+          }
+          dots = new Float32Array(tmp);
+          count = tmp.length / 7;
+        }
+
+        function drawHalftone(now) {
+          if (visible) {
+            const isDark = state.theme === 'dark';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.fillStyle = isDark ? '#070709' : '#F4F1EA';
+            ctx.fillRect(0, 0, w, h);
+
+            const r = 88;
+            const ringAge = ring.t < 0 ? 1e9 : now - ring.t;
+            const ringR = ringAge * 0.85;
+            const baseInk = isDark ? [244, 241, 234] : [18, 18, 20];
+            const goldInk = [212, 175, 55];
+            const emeraldInk = [16, 185, 129];
+
+            for (let i = 0; i < count; i++) {
+              const j = i * 7;
+              let x = dots[j];
+              let y = dots[j + 1];
+              let vx = dots[j + 2];
+              let vy = dots[j + 3];
+              const hx = dots[j + 4];
+              const hy = dots[j + 5];
+
+              if (ringAge < 950) {
+                const dx = hx - ring.x;
+                const dy = hy - ring.y;
+                const d = Math.sqrt(dx * dx + dy * dy) + 0.001;
+                const band = 1 - Math.min(1, Math.abs(d - ringR) / 28);
+                if (band > 0) {
+                  const f = band * 3.6 * (1 - ringAge / 950);
+                  vx += (dx / d) * f;
+                  vy += (dy / d) * f;
+                }
+              }
+
+              const dx = x - px;
+              const dy = y - py;
+              const d2 = dx * dx + dy * dy;
+              if (d2 < r * r) {
+                const d = Math.sqrt(d2) + 0.001;
+                const f = (1 - d / r) * 2.8;
+                vx += (dx / d) * f;
+                vy += (dy / d) * f;
+              }
+
+              vx = (vx + (hx - x) * 0.05) * 0.84;
+              vy = (vy + (hy - y) * 0.05) * 0.84;
+              x += vx;
+              y += vy;
+
+              dots[j] = x;
+              dots[j + 1] = y;
+              dots[j + 2] = vx;
+              dots[j + 3] = vy;
+
+              const disp = Math.min(1, Math.hypot(x - hx, y - hy) / 24);
+              if (disp > 0.03) {
+                const target = disp > 0.55 ? emeraldInk : goldInk;
+                const cr = Math.round(baseInk[0] + (target[0] - baseInk[0]) * disp);
+                const cg = Math.round(baseInk[1] + (target[1] - baseInk[1]) * disp);
+                const cb = Math.round(baseInk[2] + (target[2] - baseInk[2]) * disp);
+                ctx.fillStyle = `rgb(${cr},${cg},${cb})`;
+              } else {
+                ctx.fillStyle = isDark ? 'rgba(244, 241, 234, 0.22)' : 'rgba(18, 18, 20, 0.22)';
+              }
+
+              ctx.beginPath();
+              ctx.arc(x, y, dots[j + 6], 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+          requestAnimationFrame(drawHalftone);
+        }
+
+        footerRoot.addEventListener('pointermove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          px = e.clientX - rect.left;
+          py = e.clientY - rect.top;
+        });
+        footerRoot.addEventListener('pointerleave', () => {
+          px = -1e5;
+          py = -1e5;
+        });
+        footerRoot.addEventListener('pointerdown', (e) => {
+          if (e.target.closest('a,button')) return;
+          const rect = canvas.getBoundingClientRect();
+          ring = { x: e.clientX - rect.left, y: e.clientY - rect.top, t: performance.now() };
+          playSound('shockwave');
+        });
+
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            visible = entries[0] ? entries[0].isIntersecting : true;
+          });
+          io.observe(footerRoot);
+        }
+
+        layoutHalftone();
+        window.addEventListener('resize', layoutHalftone);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(layoutHalftone);
+        }
+        requestAnimationFrame(drawHalftone);
+
+        window.__relayoutHalftone = layoutHalftone;
+      })();
+
+      // -----------------------------------------------------------------------
+      // 7. CIPHER TEXT SCRAMBLE (SpecialText from animation 4.md)
+      // -----------------------------------------------------------------------
+      const GLYPHS = '+*_-_0+_$+#+-$X#+X!@';
+      function scrambleElement(el) {
+        const target = el.getAttribute('data-value') || el.textContent;
+        let step = 0;
+        const totalSteps = target.length * 3;
+        clearInterval(el.__scrambleTimer);
+        el.__scrambleTimer = setInterval(() => {
+          step++;
+          const locked = Math.floor(step / 3);
+          let out = '';
+          for (let i = 0; i < target.length; i++) {
+            if (target[i] === ' ') out += ' ';
+            else if (i < locked) out += target[i];
+            else out += GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+          }
+          el.textContent = out;
+          if (step >= totalSteps) {
+            el.textContent = target;
+            clearInterval(el.__scrambleTimer);
+          }
+        }, 32);
+      }
+
+      document.querySelectorAll('.scramble-text').forEach((el) => {
+        el.addEventListener('pointerenter', () => scrambleElement(el));
+      });
+
+      // -----------------------------------------------------------------------
+      // 8. UI CONTROLS: TIER SWITCHER, HERO MODE, THEME, SOUND, REGIONS, SIMULATOR
+      // -----------------------------------------------------------------------
+      function updateTierUI(newTier) {
+        state.tier = newTier;
+        document.querySelectorAll('.tier-btn').forEach((btn) => {
+          const t = Number(btn.getAttribute('data-tier-btn'));
+          if (t === newTier) {
+            btn.className = 'tier-btn rounded-full bg-gold text-obsidian font-semibold px-2 py-1 transition-all';
+          } else {
+            btn.className = 'tier-btn rounded-full px-2 py-1 opacity-60 transition-all hover:opacity-100';
+          }
+        });
+        const footerInd = document.getElementById('footer-tier-indicator');
+        if (footerInd) {
+          const names = { 1: 'TIER 1 (LOW · BASIC PHONE 60FPS)', 2: 'TIER 2 (MID · BALANCED 3D)', 3: 'TIER 3 (MAX · FULL FLUID + SAND)' };
+          footerInd.textContent = names[newTier] || '3-TIER ADAPTIVE ENGINE ACTIVE';
+        }
+        window.dispatchEvent(new Event('resize'));
+        if (window.__relayoutHalftone) window.__relayoutHalftone();
+      }
+
+      updateTierUI(state.tier);
+
+      document.querySelectorAll('.tier-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          updateTierUI(Number(btn.getAttribute('data-tier-btn')));
+        });
+      });
+
+      // Hero Mode Switcher
+      document.querySelectorAll('.hero-mode-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          state.heroMode = btn.getAttribute('data-hero-mode') || 'hybrid';
+          document.querySelectorAll('.hero-mode-btn').forEach((b) => {
+            if (b === btn) {
+              b.className = 'hero-mode-btn rounded-full bg-gold text-obsidian font-semibold px-2.5 py-0.5 transition-all';
+            } else {
+              b.className = 'hero-mode-btn rounded-full px-2.5 py-0.5 opacity-70 hover:opacity-100 transition-all';
+            }
+          });
+          if (fluidCanvas) fluidCanvas.style.display = state.heroMode === 'sand' ? 'none' : 'block';
+          if (sandCanvas) sandCanvas.style.display = state.heroMode === 'fluid' ? 'none' : 'block';
+        });
+      });
+
+      // Sound Toggle
+      const soundBtn = document.getElementById('sound-toggle-btn');
+      const soundDot = document.getElementById('sound-dot');
+      const soundLabel = document.getElementById('sound-label');
+      if (soundBtn) {
+        soundBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          state.soundEnabled = !state.soundEnabled;
+          if (soundLabel) soundLabel.textContent = state.soundEnabled ? 'SFX ON' : 'MUTED';
+          if (soundDot) {
+            soundDot.className = state.soundEnabled
+              ? 'h-1.5 w-1.5 rounded-full bg-emerald animate-pulse'
+              : 'h-1.5 w-1.5 rounded-full bg-red-500';
+          }
+          if (state.soundEnabled) playSound('click');
+        });
+      }
+
+      // Theme Toggle (Obsidian Dark <-> Alabaster Light)
+      const themeBtn = document.getElementById('theme-toggle-btn');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          state.theme = state.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.classList.toggle('light', state.theme === 'light');
+          document.documentElement.classList.toggle('dark', state.theme === 'dark');
+        });
+      }
+
+      // Region Corridor Tabs
+      const REGION_DATA = {
+        india: {
+          title: '🇮🇳 India Corridor — New Delhi Command Center',
+          tag: 'CTWA + UPI + Full-Stack',
+          desc: 'Direct Click-to-WhatsApp (CTWA) Meta & Google ad funnels paired with automated WhatsApp lead qualification and razor-sharp custom web platforms starting at ₹15,000/month.'
+        },
+        gulf: {
+          title: '🇦🇪 Gulf Corridor — Dubai, Abu Dhabi & Riyadh Growth Systems',
+          tag: 'High-Ticket B2B + Real Estate / E-Com',
+          desc: 'Bilingual-ready luxury landing experiences, WhatsApp Business automation flows, and high-intent Google & Meta acquisition engineered for high-LTV Gulf buyers.'
+        },
+        europe: {
+          title: '🇪🇺 Europe Corridor — UK, Germany & EU Performance Hubs',
+          tag: 'Privacy-Safe Attribution + Custom SaaS',
+          desc: 'GDPR-compliant server-side tracking, LinkedIn executive outreach funnels, and bespoke 3D product showcases engineered for European founders and agencies.'
+        },
+        us: {
+          title: '🇺🇸 United States Corridor — SaaS, AI & Direct-Response Brands',
+          tag: '4.4x ROAS + Full-Stack Engineering',
+          desc: 'Sub-second edge web applications, automated CRM pipelines, and multi-angle paid social & search creative testing built to outperform expensive domestic retainers.'
+        }
+      };
+
+      document.querySelectorAll('.region-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const key = tab.getAttribute('data-region') || 'india';
+          const info = REGION_DATA[key];
+          if (!info) return;
+          document.querySelectorAll('.region-tab').forEach((t) => {
+            t.className = t === tab
+              ? 'region-tab rounded-full bg-gold px-3.5 py-1.5 font-mono text-xs font-semibold text-obsidian transition-all'
+              : 'region-tab rounded-full border hairline-border px-3.5 py-1.5 font-mono text-xs opacity-75 hover:opacity-100 transition-all';
+          });
+          document.getElementById('region-title').textContent = info.title;
+          document.getElementById('region-tag').textContent = info.tag;
+          document.getElementById('region-desc').textContent = info.desc;
+        });
+      });
+
+      // 4.4x ROAS Simulator
+      const spendSlider = document.getElementById('sim-spend-slider');
+      const spendDisplay = document.getElementById('sim-spend-display');
+      const revDisplay = document.getElementById('sim-revenue-display');
+      const tierDisplay = document.getElementById('sim-tier-display');
+      const tierSub = document.getElementById('sim-tier-sub');
+      const simWaLink = document.getElementById('sim-whatsapp-link');
+
+      function updateSimulator() {
+        if (!spendSlider) return;
+        const spendInr = Number(spendSlider.value);
+        const cur = (state.currency || 'INR').toUpperCase();
+        
+        const rates = { INR: 1, USD: 1 / 86, EUR: 1 / 94, AED: 1 / 23.4 };
+        const symbols = { INR: '₹', USD: '$', EUR: '€', AED: 'AED ' };
+        const rate = rates[cur] || 1;
+        const sym = symbols[cur] || '₹';
+        const locale = cur === 'INR' ? 'en-IN' : cur === 'USD' ? 'en-US' : cur === 'EUR' ? 'de-DE' : 'en-AE';
+
+        const convertedSpend = Math.round(spendInr * rate);
+        const convertedProjected = Math.round(convertedSpend * 4.4);
+
+        if (spendDisplay) spendDisplay.textContent = `${sym}${convertedSpend.toLocaleString(locale)} / mo`;
+        if (revDisplay) revDisplay.textContent = `${sym}${convertedProjected.toLocaleString(locale)}`;
+
+        let recTier = 'Growth Plan';
+        let recPrice = '₹45,000 / mo Retainer';
+        if (cur === 'USD') recPrice = '$650 / mo Retainer';
+        else if (cur === 'EUR') recPrice = '€600 / mo Retainer';
+        else if (cur === 'AED') recPrice = '2,400 AED / mo Retainer';
+
+        if (spendInr <= 25000) {
+          recTier = 'Launch Plan';
+          recPrice = cur === 'USD' ? '$220 / mo Retainer' : cur === 'EUR' ? '€200 / mo Retainer' : cur === 'AED' ? '800 AED / mo Retainer' : '₹15,000 / mo Retainer';
+        } else if (spendInr >= 150000) {
+          recTier = 'Scale Plan';
+          recPrice = cur === 'USD' ? '$1,150 / mo Retainer' : cur === 'EUR' ? '€1,050 / mo Retainer' : cur === 'AED' ? '4,200 AED / mo Retainer' : '₹80,000 / mo Retainer';
+        }
+        if (tierDisplay) tierDisplay.textContent = recTier;
+        if (tierSub) tierSub.textContent = recPrice;
+
+        if (simWaLink) {
+          const msg = encodeURIComponent(
+            `Hi Zenmark, I tested your 4.4x ROAS Simulator with a ${sym}${convertedSpend.toLocaleString(locale)}/mo ad budget (Projected Pipeline: ${sym}${convertedProjected.toLocaleString(locale)}) and want to discuss the ${recTier}.`
+          );
+          simWaLink.href = `https://wa.me/917678439995?text=${msg}`;
+        }
+      }
+
+      if (spendSlider) {
+        spendSlider.addEventListener('input', updateSimulator);
+      }
+
+      // Currency Switcher
+      document.querySelectorAll('.currency-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const cur = (btn.getAttribute('data-currency') || 'INR').toLowerCase();
+          state.currency = cur.toUpperCase();
+          document.querySelectorAll('.currency-btn').forEach((b) => {
+            b.className = b === btn
+              ? 'currency-btn rounded-full bg-gold px-3 py-1 font-bold text-obsidian transition-all'
+              : 'currency-btn rounded-full px-3 py-1 opacity-70 hover:opacity-100 transition-all';
+          });
+          document.querySelectorAll('.price-val').forEach((el) => {
+            const val = el.getAttribute('data-' + cur);
+            if (val) el.textContent = val;
+          });
+          updateSimulator();
+        });
+      });
+
+      // Pricing Plan Select -> Smooth Scroll to Configurator & Pre-Select
+      document.querySelectorAll('.plan-select-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const plan = btn.getAttribute('data-select-plan');
+          const selectEl = document.getElementById('selected-plan-input');
+          if (selectEl && plan) {
+            selectEl.value = plan;
+          }
+          const cfg = document.getElementById('configurator');
+          if (cfg) cfg.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Direct Dual-Dispatch Configurator Form: Database Record via /api/leads + Speed-to-Lead WhatsApp
+      const scopeForm = document.getElementById('scope-form');
+      if (scopeForm) {
+        scopeForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameInput = document.getElementById('client-name');
+          const name = nameInput ? nameInput.value.trim() || 'Founder' : 'Founder';
+          const region = document.getElementById('client-region') ? document.getElementById('client-region').value : 'India';
+          const plan = document.getElementById('selected-plan-input') ? document.getElementById('selected-plan-input').value : 'Growth Plan';
+          const service = document.getElementById('selected-service-input') ? document.getElementById('selected-service-input').value : 'Full-Stack Growth';
+          const statusMsg = document.getElementById('form-status-msg');
+
+          if (statusMsg) {
+            statusMsg.textContent = '⏳ Recording brief & staging WhatsApp speed-to-lead handoff...';
+          }
+
+          // Asynchronous backend persistence to /api/leads (guarantees lead is recorded in database)
+          try {
+            fetch('/api/leads', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, region, plan, service }),
+              keepalive: true
+            }).catch((err) => console.warn('Lead stage notice:', err));
+          } catch (err) {
+            console.warn('Lead dispatch catch:', err);
+          }
+
+          const text = `Hi Zenmark Team! I am ${name} (${region}). I'd like to start with the *${plan}* focusing on *${service}*. Let's schedule our kickoff.`;
+          const url = `https://wa.me/917678439995?text=${encodeURIComponent(text)}`;
+
+          if (statusMsg) {
+            statusMsg.textContent = '✓ Brief saved to database! Launching official WhatsApp (+91 7678439995)...';
+          }
+          window.open(url, '_blank', 'noopener,noreferrer');
+        });
+      }
+
+      // Back to Top Button
+      const topBtn = document.getElementById('back-to-top-btn');
+      if (topBtn) {
+        topBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
